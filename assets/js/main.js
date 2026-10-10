@@ -18,12 +18,10 @@
     es: {
       title: document.title,
       description: metaDesc ? metaDesc.content : '',
-      review: (n) => `Ver reseña ${n}`,
     },
     en: {
       title: 'Laundry & Dry Cleaning in Río Grande, PR | First Stop',
       description: 'Laundry, dry cleaning, pressing and tailoring in Río Grande, Puerto Rico. Pickup and delivery in Luquillo, Fajardo, Canóvanas and the east area.',
-      review: (n) => `Show review ${n}`,
     },
   };
   const ATTRS = ['aria-label', 'alt', 'title'];
@@ -133,7 +131,7 @@
   const spy = new IntersectionObserver((entries) => {
     entries.forEach((entry) => { if (entry.isIntersecting) setActive(ALIAS[entry.target.id] || entry.target.id); });
   }, { rootMargin: '-45% 0px -50% 0px' });
-  ['inicio', 'bienvenida', 'nosotros', 'servicios', 'proceso', 'resenas', 'contacto']
+  ['inicio', 'bienvenida', 'nosotros', 'servicios', 'proceso', 'contacto']
     .map((id) => document.getElementById(id))
     .filter(Boolean)
     .forEach((section) => spy.observe(section));
@@ -154,94 +152,103 @@
     reveals.forEach((el) => el.classList.add('is-visible'));
   }
 
-  // ---- Hero: solo el video. Cuando termina, la página baja sola a la bienvenida ----
+  // ---- Hero: el video se repite sin parar. Cuando termina, la página baja sola a la bienvenida ----
   const hero = $('.hero');
   const video = $('.hero-video');
   const nextSection = $('#bienvenida');
+  const playSafe = (v) => {
+    const p = v.play();
+    if (p && typeof p.catch === 'function') p.catch(() => {});
+  };
+  let heroVisible = true;
   if (hero && video) {
-    const play = () => {
-      const p = video.play();
-      if (p && typeof p.catch === 'function') p.catch(() => {});
-    };
-
     if (reduceMotion || saveData) {
       video.removeAttribute('autoplay');
       video.pause();
     } else {
       video.addEventListener('ended', () => {
-        // Solo si el visitante sigue viendo el video
+        // Bajar solo si el visitante sigue viendo el video
         const stillWatching = hero.getBoundingClientRect().top > -hero.offsetHeight * 0.5;
         if (nextSection && stillWatching && !document.hidden && !isOpen()) {
           window.scrollTo({ top: nextSection.getBoundingClientRect().top + window.scrollY, behavior: 'smooth' });
         }
+        // ...y vuelve a empezar: nunca se queda congelado
+        video.currentTime = 0;
+        if (heroVisible) playSafe(video);
       });
-      play();
+      playSafe(video);
 
-      // Al salir del hero se pausa; al volver, el video empieza de nuevo si ya había terminado
+      // Fuera de pantalla se pausa (ahorra batería); al volver sigue reproduciéndose
       new IntersectionObserver(([entry]) => {
-        if (!entry.isIntersecting) {
-          if (!video.paused) video.pause();
-        } else {
-          if (video.ended) video.currentTime = 0;
-          play();
-        }
-      }, { threshold: 0.35 }).observe(hero);
+        heroVisible = entry.isIntersecting;
+        if (heroVisible) playSafe(video); else video.pause();
+      }, { threshold: 0.1 }).observe(hero);
     }
   }
 
-  // ---- Videos de cada sección (detrás de los textos) ----
-  // Cada escena tiene su propio video corto: se descarga al acercarse, se reproduce una vez al llegar
-  // y se queda en su último cuadro (la ropa "se queda ahí"). Al salir de pantalla vuelve al inicio.
-  const sceneVideos = $$('.scene-video');
-  if (sceneVideos.length) {
-    const still = reduceMotion || saveData;
-    const toEnd = (v) => {
-      if (Number.isFinite(v.duration)) {
-        try { v.currentTime = Math.max(0, v.duration - 0.05); } catch (_) { /* sin datos todavía */ }
-      }
-    };
-    const load = (v) => {
-      if (v.dataset.loaded) return;
-      v.dataset.loaded = '1';
+  // ---- Videos de cada sección ----
+  // Cada escena tiene su propio video corto en bucle (su final se funde con el inicio, así nunca se ve
+  // parado). Se descarga al acercarse y se reproduce mientras se ve; fuera de pantalla se pausa.
+  // Con "reducir movimiento" o ahorro de datos se queda la imagen de portada.
+  const scenes = $$('.scene').filter((s) => $('.scene-video', s));
+  const visibleVideos = new Set();
+  if (scenes.length && !reduceMotion && !saveData) {
+    const videoOf = (scene) => $('.scene-video', scene);
+    const prepare = (v) => {
+      if (v.dataset.ready) return;
+      v.dataset.ready = '1';
+      v.muted = true;          // el celular solo permite reproducir solo si está en silencio
+      v.playsInline = true;
+      v.autoplay = true;
       v.preload = 'auto';
-      if (still) v.addEventListener('loadedmetadata', () => toEnd(v), { once: true });
       v.load();
     };
 
     const near = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
-        if (e.isIntersecting) { load(e.target); near.unobserve(e.target); }
+        if (e.isIntersecting) { prepare(videoOf(e.target)); near.unobserve(e.target); }
       });
-    }, { rootMargin: '120% 0px' });
-    sceneVideos.forEach((v) => near.observe(v));
+    }, { rootMargin: '150% 0px' });
+    scenes.forEach((s) => near.observe(s));
 
-    if (!still) {
-      const view = new IntersectionObserver((entries) => {
-        entries.forEach(({ target: v, isIntersecting, intersectionRatio }) => {
-          if (isIntersecting && intersectionRatio >= 0.4) {
-            if (v.dataset.played === '1') return;
-            v.dataset.played = '1';
-            load(v);
-            try { v.currentTime = 0; } catch (_) { /* sin datos todavía */ }
-            const p = v.play();
-            if (p && typeof p.catch === 'function') p.catch(() => {});
-          } else if (!isIntersecting && v.dataset.played === '1') {
-            v.pause();
-            v.dataset.played = '';
-            try { v.currentTime = 0; } catch (_) { /* sin datos todavía */ }
-          }
-        });
-      }, { threshold: [0, 0.4] });
-      sceneVideos.forEach((v) => view.observe(v));
-    }
+    const view = new IntersectionObserver((entries) => {
+      entries.forEach(({ target, isIntersecting }) => {
+        const v = videoOf(target);
+        if (isIntersecting) {
+          visibleVideos.add(v);
+          prepare(v);
+          playSafe(v);
+        } else {
+          visibleVideos.delete(v);
+          v.pause();
+        }
+      });
+    }, { threshold: 0.15 });
+    scenes.forEach((s) => view.observe(s));
   }
 
-  // ---- Profundidad 3D: el video de cada escena se mueve más lento que el texto y se inclina ----
+  // Si el navegador bloquea la reproducción automática (por ejemplo, con el ahorro de batería
+  // del celular), el primer toque en la página pone a andar los videos que se están viendo
+  if (!reduceMotion && !saveData) {
+    const unlock = () => {
+      if (video && heroVisible && video.paused) playSafe(video);
+      visibleVideos.forEach((v) => { if (v.paused) playSafe(v); });
+    };
+    ['touchend', 'click', 'keydown'].forEach((ev) => document.addEventListener(ev, unlock, { passive: true }));
+  }
+
+  // ---- Profundidad 3D (computadora): el video de cada escena se mueve más lento que el texto ----
+  // En celular el video va completo y quieto, sin este efecto.
   const sceneBgs = $$('.scene-bg');
+  const wide = window.matchMedia('(min-width: 761px)');
   if (sceneBgs.length && !reduceMotion) {
     let depthRaf = 0;
     const depth = () => {
       depthRaf = 0;
+      if (!wide.matches) {
+        sceneBgs.forEach((bg) => ['--py', '--rx', '--sc'].forEach((p) => bg.style.removeProperty(p)));
+        return;
+      }
       const vh = window.innerHeight;
       sceneBgs.forEach((bg) => {
         const r = bg.parentElement.getBoundingClientRect();
@@ -255,6 +262,34 @@
     window.addEventListener('scroll', () => { if (!depthRaf) depthRaf = window.requestAnimationFrame(depth); }, { passive: true });
     window.addEventListener('resize', depth);
     depth();
+  }
+
+  // ---- Carro de lavandería del footer: entra rodando al verse y, con mouse, sigue al cursor en 3D ----
+  const cart = $('.footer-cart');
+  if (cart) {
+    if ('IntersectionObserver' in window) {
+      const cartIO = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) { cart.classList.add('is-in'); cartIO.disconnect(); }
+      }, { threshold: 0.35 });
+      cartIO.observe(cart);
+    } else {
+      cart.classList.add('is-in');
+    }
+    const footerEl = $('.site-footer');
+    const cart3d = $('.cart-3d', cart);
+    if (footerEl && cart3d && !reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      footerEl.addEventListener('pointermove', (e) => {
+        const r = cart.getBoundingClientRect();
+        const x = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / 500));
+        const y = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / 400));
+        cart3d.style.setProperty('--tilt-y', `${(x * 16).toFixed(1)}deg`);
+        cart3d.style.setProperty('--tilt-x', `${(-y * 8).toFixed(1)}deg`);
+      });
+      footerEl.addEventListener('pointerleave', () => {
+        cart3d.style.removeProperty('--tilt-y');
+        cart3d.style.removeProperty('--tilt-x');
+      });
+    }
   }
 
   // ---- Inclinación 3D de las tarjetas de servicio (solo con mouse) ----
@@ -272,63 +307,6 @@
         card.style.transform = '';
       });
     });
-  }
-
-  // ---- Carrusel de reseñas (móvil) ----
-  const track = $('.reviews-track');
-  const dotsWrap = $('.reviews-dots');
-  if (track && dotsWrap) {
-    const cards = $$('.review-card', track);
-    const mobile = window.matchMedia('(max-width: 760px)');
-    let index = 0;
-    let timer = null;
-    let inView = false;
-    let userTouched = false;
-
-    const go = (i) => {
-      index = (i + cards.length) % cards.length;
-      const card = cards[index];
-      track.scrollTo({
-        left: card.offsetLeft - (track.clientWidth - card.clientWidth) / 2,
-        behavior: reduceMotion ? 'auto' : 'smooth',
-      });
-    };
-    const stop = () => { window.clearInterval(timer); timer = null; };
-    const start = () => {
-      stop();
-      if (mobile.matches && inView && !userTouched && !reduceMotion) {
-        timer = window.setInterval(() => go(index + 1), 5000);
-      }
-    };
-
-    const dots = cards.map((_, i) => {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.addEventListener('click', () => { userTouched = true; stop(); go(i); });
-      dotsWrap.appendChild(b);
-      return b;
-    });
-    const labelDots = () => dots.forEach((b, i) => b.setAttribute('aria-label', UI[lang].review(i + 1)));
-    labelDots();
-    document.addEventListener('langchange', labelDots);
-
-    const sync = () => {
-      const center = track.scrollLeft + track.clientWidth / 2;
-      let best = 0;
-      let bestDist = Infinity;
-      cards.forEach((c, i) => {
-        const d = Math.abs(c.offsetLeft + c.clientWidth / 2 - center);
-        if (d < bestDist) { bestDist = d; best = i; }
-      });
-      index = best;
-      dots.forEach((d, i) => d.setAttribute('aria-current', String(i === best)));
-    };
-
-    track.addEventListener('scroll', () => window.requestAnimationFrame(sync), { passive: true });
-    track.addEventListener('pointerdown', () => { userTouched = true; stop(); });
-    mobile.addEventListener('change', start);
-    new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; start(); }, { threshold: 0.4 }).observe(track);
-    sync();
   }
 
   // ---- Horario: resaltar el día de hoy (hora de Puerto Rico) ----

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://snakedevsoft2.github.io/FIRSTOP/sitemap.xml
+Sitemap: https://firstop-sigma.vercel.app/sitemap.xml

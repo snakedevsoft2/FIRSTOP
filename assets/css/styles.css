@@ -257,7 +257,7 @@ h1, h2, h3 { line-height: 1.15; }
   transform: rotateX(-90deg);
   transform-origin: 50% 0;
   transition: transform .35s var(--ease-out), opacity .25s;
-  transition-delay: calc((5 - var(--i, 0)) * 30ms);
+  transition-delay: calc((4 - var(--i, 0)) * 30ms);
 }
 .menu-panel.is-open .menu-list li,
 .menu-panel.is-open .lang-switch {
@@ -285,7 +285,7 @@ h1, h2, h3 { line-height: 1.15; }
 
 /* Idioma: español / inglés (última pieza del acordeón) */
 .lang-switch {
-  --i: 5;
+  --i: 4;
   display: flex;
   gap: 4px;
   padding: 4px;
@@ -460,9 +460,12 @@ h1, h2, h3 { line-height: 1.15; }
 .section-lead { margin: 0 auto; max-width: 560px; color: var(--muted); font-size: 1.1rem; }
 
 /* ==========================================================================
-   Escenas: el video del proceso va de fondo y los textos encima (superpuestos).
-   La ropa cae, se recoge, se lava y queda lista; un video por sección.
-   El video se mueve más lento que el texto y se inclina un poco: profundidad 3D.
+   Escenas: un video corto por sección con los textos encima (computadora).
+   El video nunca se muestra más grande que su tamaño real (1280 px), así no
+   pierde nitidez, y se repite sin cortes (su final se funde con el inicio).
+   Al hacer scroll se mueve más lento que el texto y se inclina: profundidad 3D.
+   En celular cambia el diseño: el video va completo, a todo el ancho, y los
+   textos quedan arriba o abajo (nunca encima).
    ========================================================================== */
 .scene { position: relative; }
 .scene > :not(.scene-bg) { position: relative; z-index: 1; }
@@ -487,7 +490,7 @@ h1, h2, h3 { line-height: 1.15; }
 /* Fondo blanco: el blanco desaparece en el color de la sección (multiply) */
 .scene-bg--white { mix-blend-mode: multiply; }
 .scene-bg--white .scene-video {
-  filter: brightness(1.05) contrast(1.02);
+  filter: brightness(1.05);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent), linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
   -webkit-mask-composite: source-in;
   mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent), linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
@@ -495,8 +498,8 @@ h1, h2, h3 { line-height: 1.15; }
 }
 /* Fondo de cuarto: óvalo suave sin bordes y un velo claro detrás del texto */
 .scene-bg--room .scene-video {
-  -webkit-mask-image: radial-gradient(ellipse 64% 66% at 50% 50%, #000 46%, transparent 100%);
-  mask-image: radial-gradient(ellipse 64% 66% at 50% 50%, #000 46%, transparent 100%);
+  -webkit-mask-image: radial-gradient(closest-side, #000 56%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 56%, transparent 100%);
 }
 .scene-bg--room::after {
   content: "";
@@ -520,9 +523,16 @@ h1, h2, h3 { line-height: 1.15; }
   text-shadow: 0 0 2px #fff, 0 0 8px rgba(255, 255, 255, .98), 0 0 18px rgba(255, 255, 255, .95), 0 0 34px rgba(255, 255, 255, .8);
 }
 
+/* El párrafo de la bienvenida lleva un resplandor blanco suave para leerse sobre la ropa */
+.scene .intro-text {
+  border-radius: 18px;
+  background: rgba(255, 255, 255, .6);
+  box-shadow: 0 0 26px 16px rgba(255, 255, 255, .6);
+}
+
 /* Bienvenida: la sección entera es la escena; la ropa cae detrás de las letras */
 .intro.scene { overflow: hidden; }
-.intro.scene .scene-bg { --scene-w: min(1400px, 112vw); top: 66%; }
+.intro.scene .scene-bg { top: 62%; }
 .intro .intro-inner { min-height: min(68vw, 640px); justify-content: center; }
 
 /* Títulos de sección sobre su video */
@@ -535,10 +545,48 @@ h1, h2, h3 { line-height: 1.15; }
   margin-bottom: clamp(28px, 4vw, 48px);
 }
 .scene--head .section-head { margin-bottom: 0; }
-.scene--head .rating-summary { margin: 22px auto 0; }
 .scene--head .scene-bg { --scene-w: min(980px, 100vw); }
-.scene--room .scene-bg { --scene-w: min(1080px, 112vw); }
+.scene--room .scene-bg { --scene-w: min(1080px, 100vw); }
 .services .scene--head .scene-bg--white { --scene-w: min(900px, 100vw); }
+
+/* Celular: el video completo a todo el ancho, sin recortes ni textos encima,
+   y sin el efecto 3D (así se ve nítido y estable) */
+@media (max-width: 760px) {
+  .scene-bg,
+  .intro.scene .scene-bg,
+  .scene--head .scene-bg,
+  .scene--room .scene-bg,
+  .services .scene--head .scene-bg--white {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    translate: none;
+    transform: none;
+  }
+  .scene-bg--white .scene-video,
+  .scene-bg--room .scene-video {
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 9%, #000 91%, transparent);
+    mask-image: linear-gradient(180deg, transparent, #000 9%, #000 91%, transparent);
+  }
+  .scene-bg--room::after { display: none; }
+
+  .scene .intro-title,
+  .scene .section-title,
+  .scene .steps li { text-shadow: none; }
+  .scene .intro-text { font-weight: 400; color: #47678a; text-shadow: none; background: none; box-shadow: none; }
+  .scene .section-lead { font-weight: 400; color: var(--muted); text-shadow: none; }
+
+  /* Bienvenida: primero los textos y debajo la ropa cayendo */
+  .intro.scene { display: flex; flex-direction: column; padding-bottom: clamp(20px, 6vw, 36px); }
+  .intro.scene .scene-bg { order: 2; margin-top: 22px; }
+  .intro .intro-inner { min-height: 0; }
+
+  /* Servicios y "Así cuidamos tu ropa": primero el video y debajo los textos */
+  .scene--head { min-height: 0; }
+  .scene--head .scene-bg { margin-bottom: 16px; }
+}
 
 /* ---------- Nosotros ---------- */
 .about { overflow: hidden; }
@@ -710,59 +758,11 @@ h1, h2, h3 { line-height: 1.15; }
   .steps { flex-direction: column; align-items: flex-start; gap: 12px; }
 }
 
-/* ---------- Reseñas ---------- */
-.rating-summary {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 8px 12px;
-  width: fit-content;
-  max-width: 100%;
-  margin: calc(clamp(40px, 5vw, 60px) * -.4) auto clamp(40px, 5vw, 56px);
-  padding: 10px 22px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: #fff;
-  transition: box-shadow .3s;
-}
-.rating-summary:hover { box-shadow: var(--shadow-sm); }
-.g-logo { width: 24px; height: 24px; }
-.rating-value { font-size: 1.5rem; font-weight: 800; line-height: 1; color: var(--navy-900); }
-.rating-count { color: var(--muted); font-weight: 700; font-size: .95rem; }
-
-.reviews-track {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(18px, 2.4vw, 28px);
-}
-.review-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  margin: 0;
-  padding: 34px 26px 30px;
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  background: #fff;
-  text-align: center;
-}
-.review-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-sm); }
-.review-card blockquote { margin: 0; font-size: 1.2rem; font-weight: 700; line-height: 1.4; color: var(--navy-900); }
-.review-card blockquote p { margin: 0; }
-.review-card figcaption { margin-top: auto; font-weight: 700; font-size: .95rem; color: var(--muted); }
-
-.reviews-dots { display: none; }
-.reviews-cta { display: flex; justify-content: center; margin-top: clamp(36px, 5vw, 52px); }
-
 /* ==========================================================================
    FOOTER (canales oficiales, mapa y horario al final)
    ========================================================================== */
 .site-footer {
   position: relative;
-  overflow: hidden;
   isolation: isolate;
   color: rgba(255, 255, 255, .82);
   background:
@@ -841,6 +841,111 @@ h1, h2, h3 { line-height: 1.15; }
 }
 .footer-bottom p { margin: 0; }
 .credit strong { color: #fff; font-weight: 900; letter-spacing: .14em; }
+
+/* ==========================================================================
+   Carro de lavandería (footer): llega rodando, le caen prendas y se mueve en 3D.
+   Va estacionado sobre el mapa y asoma por encima del footer.
+   Capas: fondo del carro, montón de ropa, prendas que caen y frente del carro;
+   cada capa a distinta profundidad, así al girar se nota el volumen.
+   ========================================================================== */
+.footer-main { position: relative; }
+.footer-cart {
+  --cart-w: clamp(150px, 15vw, 240px);
+  position: absolute;
+  top: clamp(60px, 8vw, 96px);           /* borde de arriba del mapa */
+  right: clamp(12px, 5%, 70px);
+  z-index: 3;
+  width: var(--cart-w);
+  aspect-ratio: 640 / 748;
+  translate: 0 calc(-100% + var(--cart-w) * .04);   /* las ruedas apoyadas sobre el mapa */
+  pointer-events: none;
+}
+.js .footer-cart { opacity: 0; }
+.footer-cart.is-in { opacity: 1; animation: cart-roll-in 1.8s cubic-bezier(.2, .8, .3, 1) both; }
+
+.cart-stage { position: absolute; inset: 0; perspective: 900px; perspective-origin: 50% 35%; }
+.cart-glow {
+  position: absolute;
+  inset: 4% -28% -8%;
+  background: radial-gradient(closest-side, rgba(85, 182, 239, .42), rgba(85, 182, 239, .12) 60%, transparent);
+  animation: cart-glow 5s ease-in-out infinite alternate;
+}
+.cart-shadow {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  bottom: -2.5%;
+  height: 8%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0, 0, 0, .55), transparent);
+}
+.cart-3d {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(calc(4deg + var(--tilt-x, 0deg))) rotateY(calc(-8deg + var(--tilt-y, 0deg)));
+  transition: transform .7s var(--ease-out);
+}
+.cart-layer { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cart-back { transform: translateZ(-14px) scale(1.016); }
+.cart-heap { transform: translateZ(-7px) scale(1.008); transform-origin: 50% 30%; }
+.cart-front { transform: translateZ(0); }
+.cart-back,
+.cart-front { filter: drop-shadow(0 0 1px rgba(255, 255, 255, .5)) drop-shadow(0 8px 14px rgba(0, 0, 0, .3)); }
+.cart-drop {
+  position: absolute;
+  top: 8%;
+  opacity: 0;
+  transform: translate3d(0, 0, -3px);
+}
+.cart-drop--red { left: 27%; width: 24%; }
+.cart-drop--blue { left: 51%; width: 22%; }
+
+/* Vida: gira despacio en 3D, le caen prendas y la ropa rebota al recibirlas */
+.footer-cart.is-in .cart-3d { animation: cart-sway 8s ease-in-out 1.8s infinite alternate; }
+.footer-cart.is-in .cart-drop { animation: cart-drop 9s cubic-bezier(.45, 0, .75, 1) infinite; }
+.footer-cart.is-in .cart-drop--red { animation-delay: 1.9s; }
+.footer-cart.is-in .cart-drop--blue { animation-delay: 2.5s; }
+.footer-cart.is-in .cart-heap { animation: cart-heap 9s ease-out 1.9s infinite; }
+
+@keyframes cart-roll-in {
+  0% { transform: translateX(150%); opacity: 0; }
+  12% { opacity: 1; }
+  25% { transform: translateX(96%) translateY(-1.5%) rotate(-1deg); }
+  40% { transform: translateX(46%) translateY(0) rotate(.6deg); }
+  55% { transform: translateX(9%) translateY(-1%) rotate(-.6deg); }
+  70% { transform: translateX(-4%) rotate(-1.6deg); }
+  84% { transform: translateX(1.5%) rotate(.7deg); }
+  100% { transform: none; opacity: 1; }
+}
+@keyframes cart-sway {
+  from { rotate: y -12deg; }
+  to { rotate: y 10deg; }
+}
+@keyframes cart-glow {
+  from { opacity: .75; transform: scale(.96); }
+  to { opacity: 1; transform: scale(1.05); }
+}
+@keyframes cart-drop {
+  0% { opacity: 0; transform: translate3d(0, -330%, -3px) rotate(-50deg); }
+  3% { opacity: 1; }
+  10% { transform: translate3d(0, 30%, -3px) rotate(10deg); animation-timing-function: ease-out; }
+  12.5% { transform: translate3d(0, 6%, -3px) rotate(4deg); animation-timing-function: ease-in; }
+  15% { transform: translate3d(0, 34%, -3px) rotate(6deg); opacity: 1; }
+  24% { transform: translate3d(0, 92%, -3px) rotate(6deg); opacity: 0; }
+  100% { transform: translate3d(0, 92%, -3px); opacity: 0; }
+}
+@keyframes cart-heap {
+  0%, 9.5%, 15%, 22%, 100% { transform: translateZ(-7px) scale(1.008); }
+  11% { transform: translateZ(-7px) scale(1.04, .93); }
+  13% { transform: translateZ(-7px) scale(1, 1.03); }
+  17.5% { transform: translateZ(-7px) scale(1.035, .94); }
+  19.5% { transform: translateZ(-7px) scale(1.004, 1.025); }
+}
+
+@media (max-width: 980px) {
+  .footer-cart { --cart-w: clamp(112px, 22vw, 170px); right: 8px; }
+}
 
 /* ==========================================================================
    Botones flotantes: llamar y WhatsApp (abajo a la derecha)
@@ -960,34 +1065,6 @@ h1, h2, h3 { line-height: 1.15; }
 @media (max-width: 760px) {
   body { font-size: 16px; }
 
-  .reviews-track {
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    grid-auto-columns: 84%;
-    gap: 14px;
-    margin: 0 calc(var(--gutter) * -1);
-    padding: 6px var(--gutter) 12px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-padding: 0 var(--gutter);
-    scrollbar-width: none;
-    overscroll-behavior-x: contain;
-  }
-  .reviews-track::-webkit-scrollbar { display: none; }
-  .review-card { scroll-snap-align: center; }
-  .reviews-dots { display: flex; justify-content: center; gap: 8px; margin-top: 10px; }
-  .reviews-dots button {
-    width: 10px;
-    height: 10px;
-    padding: 0;
-    border: 0;
-    border-radius: 999px;
-    background: #cfe0ee;
-    cursor: pointer;
-    transition: width .45s var(--ease-spring), background-color .3s;
-  }
-  .reviews-dots button[aria-current="true"] { width: 28px; background: var(--brand-2); }
-
   .footer-bottom { flex-direction: column; text-align: center; }
 }
 
@@ -1018,9 +1095,6 @@ h1, h2, h3 { line-height: 1.15; }
   .menu-fab-icon span:nth-child(2) { top: 18px; right: 15px; }
   .menu-fab-icon span:nth-child(3) { top: 24px; }
   .nav-link { min-width: 150px; padding: 10px 18px; }
-  .intro.scene .scene-bg { --scene-w: 150vw; top: auto; bottom: -4%; translate: -50% var(--py, 0px); }
-  .scene--head .scene-bg { --scene-w: 140vw; }
-  .scene--room .scene-bg { --scene-w: 165vw; }
   .call-float { height: 52px; }
   .call-icon { width: 40px; height: 40px; }
   .call-icon svg { width: 18px; height: 18px; }
@@ -1035,8 +1109,7 @@ h1, h2, h3 { line-height: 1.15; }
 }
 
 @media (hover: none) {
-  .service-card:hover,
-  .review-card:hover { transform: none; }
+  .service-card:hover { transform: none; }
 }
 
 /* Accesibilidad: menos movimiento */

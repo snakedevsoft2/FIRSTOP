@@ -2,17 +2,18 @@
 
 Página de una sola sección (one page) para **Laundry y Dry Cleaning / First Stop Laundry & Sastrería**, en la Carr. PR-3 km 26.5, Río Grande, Puerto Rico.
 
-Es un sitio estático: HTML, CSS y JavaScript sin librerías ni proceso de compilación. Se puede subir tal cual a GitHub Pages, Netlify, Vercel o cualquier hosting.
+Publicada en **https://firstop-sigma.vercel.app/**. Es un sitio estático: HTML, CSS y JavaScript sin librerías ni proceso de compilación.
 
 ## Estructura
 
 ```
 index.html                 Página (contenido, SEO y datos estructurados)
 assets/css/styles.css      Estilos y animaciones
-assets/js/main.js          Menú, idioma ES / EN, videos, profundidad 3D, animaciones y WhatsApp
+assets/js/main.js          Menú, idioma ES / EN, videos, profundidad 3D, carro animado y WhatsApp
 assets/images/             Imágenes (fachada, portada del hero, imagen para redes)
 assets/images/servicios/   Una foto por servicio
 assets/images/proceso/     Portada de cada video de sección
+assets/images/carro/       Capas del carro de lavandería del footer
 assets/videos/hero.mp4     Video del hero
 assets/videos/proceso/     Un video corto por sección (la historia de la ropa)
 assets/icons/              Íconos 3D de redes y favicons
@@ -20,20 +21,23 @@ assets/logo/               Logo en SVG (color, blanco e ícono) y PNG
 robots.txt, sitemap.xml, site.webmanifest
 ```
 
-## La historia de la ropa (un video por sección, con los textos encima)
-
-Cada sección tiene un video corto de fondo y sus textos van superpuestos. El video se descarga solo al acercarse a su sección, se reproduce una vez al llegar y se queda en su último cuadro (la ropa "se queda ahí"). Al salir de pantalla vuelve al inicio para verse de nuevo. Al hacer scroll, el video se mueve más lento que el texto y se inclina un poco, lo que da profundidad 3D.
+## La historia de la ropa (un video por sección)
 
 | Sección | Video | Qué se ve |
 | --- | --- | --- |
-| Bienvenida | `assets/videos/proceso/ropa-cae.mp4` | La ropa colgada cae detrás de las letras y queda en el piso |
+| Bienvenida | `assets/videos/proceso/ropa-cae.mp4` | La ropa colgada cae y queda en el piso |
 | Servicios | `assets/videos/proceso/ropa-recogida.mp4` | Unas manos recogen la ropa |
 | Así cuidamos tu ropa | `assets/videos/proceso/ropa-lavadora.mp4` | La ropa entra a la lavadora y se lava |
-| Reseñas | `assets/videos/proceso/ropa-lista.mp4` | Doblado, sastrería, planchado y ropa lista |
 
-- Los cuatro videos salen de `proceso-completo.mp4`, recortados y comprimidos (unos 2 MB entre todos).
-- Las escenas con fondo blanco se funden con el color de la sección; las demás se recortan en un óvalo suave, con un velo claro detrás del texto.
-- Con "reducir movimiento" activado, o con ahorro de datos, cada video se queda quieto en su último cuadro.
+- **Nunca se paran:** cada video se repite sin cortes (su final se funde con el inicio). Se descarga al acercarse a su sección, se reproduce mientras se ve y se pausa fuera de pantalla para ahorrar batería. Si el celular bloquea la reproducción automática (por ejemplo, con ahorro de batería), el primer toque en la página los pone a andar.
+- **Calidad:** están a su resolución real (1280 × 720) y nunca se muestran más grandes que eso, así no se ven pixeleados. Salen de `proceso-completo.mp4` (que no se sube).
+- **Computadora:** los textos van encima del video. Al hacer scroll, el video se mueve más lento que el texto y se inclina un poco, lo que da profundidad 3D.
+- **Celular:** diseño propio. El video va completo, a todo el ancho, y los textos quedan arriba o abajo (nunca encima), sin efecto 3D para que se vea nítido.
+- Con "reducir movimiento" activado, o con ahorro de datos, se queda la imagen de portada.
+
+## Carro de lavandería (footer)
+
+Un carro con ropa estacionado sobre el mapa, que asoma por encima del footer. Cuando el footer aparece en pantalla, el carro entra rodando. Después gira despacio en 3D, le caen prendas cada pocos segundos y la ropa rebota al recibirlas. Con mouse, el carro sigue al cursor. Está hecho con capas (`assets/images/carro/`): fondo del carro, montón de ropa, prendas que caen y frente del carro, cada una a distinta profundidad para que se note el volumen al girar.
 
 ## Cambiar fotos y videos
 
@@ -52,7 +56,7 @@ Para cambiar una foto o un video, reemplaza el archivo y **conserva el mismo nom
 | Recogido y entrega | `assets/images/servicios/recogido-y-entrega.jpg` |
 | Foto de Nosotros | `assets/images/fachada-laundry-dry-cleaning-rio-grande.webp` |
 
-Fotos de servicios: horizontales (4:3) y de menos de 150 KB. Videos: MP4 (H.264), cortos, sin sonido y de menos de 2 MB cada uno.
+Fotos de servicios: horizontales (4:3) y de menos de 150 KB. Videos: MP4 (H.264), 1280 × 720, sin sonido y de menos de 3 MB cada uno.
 
 ## Datos del negocio
 
@@ -62,11 +66,10 @@ Fotos de servicios: horizontales (4:3) y de menos de 150 KB. Videos: MP4 (H.264)
 | WhatsApp (939-655-5329) | `assets/js/main.js` (`WHATSAPP`) y `index.html` (busca `19396555329` y `939-655-5329`) |
 | Horario | `index.html` (sección Horario y `openingHoursSpecification`) |
 | Facebook e Instagram | `index.html`, en "Canales oficiales" (hoy apuntan a facebook.com e instagram.com) |
-| Reseñas | `index.html`, sección Reseñas (son reseñas reales de Google Maps) |
 
 ## Hero
 
-El hero es solo el video. Cuando termina, la página baja sola a la bienvenida. Si el visitante vuelve arriba, el video empieza de nuevo. Si ya había bajado por su cuenta, la página no se mueve.
+El hero es solo el video, que se repite sin parar. Cuando termina, la página baja sola a la bienvenida si el visitante lo está mirando; si ya había bajado por su cuenta, la página no se mueve.
 
 ## Menú, idioma y botones flotantes
 
@@ -80,10 +83,10 @@ El selector Español / English, dentro del menú, cambia toda la página entre e
 
 ## Publicar
 
-1. **GitHub Pages:** en el repositorio, abre *Settings → Pages* y elige la rama `main` y la carpeta raíz.
-2. **Dominio:** el sitio usa `https://snakedevsoft2.github.io/FIRSTOP/` como dirección oficial. Si se usa un dominio propio, reemplaza esa dirección en `index.html`, `sitemap.xml` y `robots.txt`.
+1. **Vercel:** el proyecto está conectado al repositorio de GitHub; cada `push` a `main` publica los cambios solo.
+2. **Dominio:** la dirección oficial es `https://firstop-sigma.vercel.app/`. Si conectas un dominio propio, reemplaza esa dirección en `index.html`, `sitemap.xml` y `robots.txt`.
 3. **Google Search Console:** agrega el sitio y envía `sitemap.xml`.
-4. **Perfil de Google Business:** pon la nueva dirección del sitio como "Sitio web" del negocio.
+4. **Perfil de Google Business:** pon la dirección del sitio como "Sitio web" del negocio.
 
 Los archivos originales que no usa la página (videos completos y fotos sin optimizar) están en `.gitignore`: siguen en la computadora pero no se suben.
 
