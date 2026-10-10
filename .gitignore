@@ -1,0 +1,16 @@
+# Archivos originales que la página no usa (se quedan en la computadora)
+assets/videos/proceso-completo.mp4
+assets/videos/lavado.mp4
+assets/videos/ropa-cayendo.mp4
+assets/videos/ropa-lavadora.mp4
+assets/images/descarga.jpg
+assets/images/Dishwasher.jpg
+assets/images/Casino online*.jpg
+assets/images/How to Wash Bedsheet*.jpg
+assets/images/Packing Tips*.jpg
+assets/images/Trabajador de servicio*.jpg
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store
