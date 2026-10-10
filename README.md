@@ -29,7 +29,7 @@ robots.txt, sitemap.xml, site.webmanifest
 | Servicios | `assets/videos/proceso/ropa-recogida.mp4` | Unas manos recogen la ropa |
 | Así cuidamos tu ropa | `assets/videos/proceso/ropa-lavadora.mp4` | La ropa entra a la lavadora y se lava |
 
-- **Nunca se paran:** cada video se repite sin cortes (su final se funde con el inicio). Se descarga al acercarse a su sección, se reproduce mientras se ve y se pausa fuera de pantalla para ahorrar batería. Si el celular bloquea la reproducción automática (por ejemplo, con ahorro de batería), el primer toque en la página los pone a andar.
+- **Nunca se paran:** cada video se repite sin cortes (su final se funde con el inicio). Se descarga al acercarse a su sección, se reproduce mientras se ve y se pausa fuera de pantalla para ahorrar batería. Si el iPhone bloquea la reproducción automática (modo de ahorro de batería), el mismo video se muestra como imagen animada, que Safari sí reproduce; si eso tampoco es posible, queda la portada sin el botón de "play".
 - **Calidad:** están a su resolución real (1280 × 720) y nunca se muestran más grandes que eso, así no se ven pixeleados. Salen de `proceso-completo.mp4` (que no se sube).
 - **Computadora:** los textos van encima del video. Al hacer scroll, el video se mueve más lento que el texto y se inclina un poco, lo que da profundidad 3D.
 - **Celular:** diseño propio. El video va completo, a todo el ancho, y los textos quedan arriba o abajo (nunca encima), sin efecto 3D para que se vea nítido.
@@ -71,10 +71,21 @@ Fotos de servicios: horizontales (4:3) y de menos de 150 KB. Videos: MP4 (H.264)
 
 El hero es solo el video, que se repite sin parar. Cuando termina, la página baja sola a la bienvenida si el visitante lo está mirando; si ya había bajado por su cuenta, la página no se mueve.
 
+## Versión para celular
+
+En celular la página funciona como una app:
+
+- **Una sección por pantalla:** cada sección (hero, bienvenida, nosotros, servicios, proceso y contacto) ocupa exactamente la pantalla, debajo del header, sin que se vea la de arriba.
+- **Scroll automático:** al deslizar, la página salta sola a la siguiente sección. El hero, al terminar su video, baja solo a la bienvenida.
+- **Header fijo y desplegado:** logo, idioma y las 5 secciones siempre visibles arriba; la sección donde estás queda marcada.
+- **Hero vertical:** ocupa toda la pantalla, con el video completo y nítido, un reflejo debajo y una flecha para bajar.
+- **Contenido compacto:** los videos se ven completos (más pequeños en pantallas bajas), servicios como 6 fichas que abren WhatsApp, y los pasos del proceso en una fila.
+- Se probó en tamaños de iPhone SE, iPhone 14 y iPhone Pro Max.
+
 ## Menú, idioma y botones flotantes
 
 - Arriba a la izquierda va el logo, sin fondo. Arriba a la derecha, el botón "Menú": al tocarlo, las secciones se despliegan hacia abajo como un acordeón transparente. Se guarda al elegir una sección, al tocar fuera, con Escape o al seguir bajando.
-- Abajo a la derecha están los botones de llamar y WhatsApp. El de llamar muestra solo el teléfono y, al pasar el mouse, se abre con "Llamar 787-888-1665".
+- Abajo a la derecha están los botones de llamar y WhatsApp. El de llamar muestra solo el teléfono y, al pasar el mouse, se abre con "Llamar 787-888-1665". Al llegar al footer (donde ya están WhatsApp y el teléfono) se esconden, y vuelven al salir.
 - Los botones usan el azul de la página.
 
 ## Idioma (ES / EN)

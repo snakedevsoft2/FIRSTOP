@@ -77,12 +77,14 @@
   let openedAtY = 0;
   let ticking = false;
 
+  // En celular el menú va siempre desplegado dentro del header (navegación rápida)
+  const appNav = window.matchMedia('(max-width: 760px)');
   const isOpen = () => menuBtn.getAttribute('aria-expanded') === 'true';
 
   const setMenu = (open) => {
     menuBtn.setAttribute('aria-expanded', String(open));
     panel.classList.toggle('is-open', open);
-    panel.inert = !open;
+    panel.inert = appNav.matches ? false : !open;
     if (open) openedAtY = window.scrollY;
   };
 
@@ -103,7 +105,8 @@
   onScroll();
 
   // ---- Menú flotante: se abre con el botón y se guarda al elegir, al tocar fuera o con Escape ----
-  panel.inert = true;
+  panel.inert = !appNav.matches;
+  appNav.addEventListener('change', () => setMenu(false));
   menuBtn.addEventListener('click', () => setMenu(!isOpen()));
   $$('a', panel).forEach((a) => a.addEventListener('click', () => setMenu(false)));
   document.addEventListener('click', (e) => {
@@ -127,7 +130,7 @@
     });
   };
   // Secciones sin enlace propio en el menú se marcan con la opción más cercana
-  const ALIAS = { bienvenida: 'inicio', proceso: 'servicios' };
+  const ALIAS = { bienvenida: 'inicio' };
   const spy = new IntersectionObserver((entries) => {
     entries.forEach((entry) => { if (entry.isIntersecting) setActive(ALIAS[entry.target.id] || entry.target.id); });
   }, { rootMargin: '-45% 0px -50% 0px' });
@@ -156,9 +159,40 @@
   const hero = $('.hero');
   const video = $('.hero-video');
   const nextSection = $('#bienvenida');
-  const playSafe = (v) => {
+  // Ir a una sección dejando libre el header (en celular el header queda fijo arriba)
+  const goTo = (el) => {
+    const offset = appNav.matches ? header.offsetHeight : 0;
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
+  };
+
+  // iPhone con ahorro de batería: el sistema no deja reproducir videos solos. En ese caso se muestra
+  // el mismo video como imagen animada (Safari sí la reproduce); si no se puede, queda la portada.
+  const swapToImage = (v, onReady) => {
+    if (v.dataset.swapped) return;
+    v.dataset.swapped = '1';
+    const source = v.querySelector('source');
+    const src = source ? source.getAttribute('src') : v.getAttribute('src');
+    if (!src) return;
+    const img = document.createElement('img');
+    img.className = `${v.className} video-as-img`;
+    img.alt = '';
+    img.setAttribute('aria-hidden', 'true');
+    img.style.display = 'none';
+    img.addEventListener('load', () => {
+      img.style.display = '';
+      v.style.display = 'none';
+      if (onReady) onReady();
+    }, { once: true });
+    img.addEventListener('error', () => img.remove(), { once: true });
+    img.src = src;
+    v.after(img);
+  };
+  const playSafe = (v, onSwap) => {
+    if (v.dataset.swapped) return;
     const p = v.play();
-    if (p && typeof p.catch === 'function') p.catch(() => {});
+    if (p && typeof p.catch === 'function') {
+      p.catch((err) => { if (err && err.name === 'NotAllowedError') swapToImage(v, onSwap); });
+    }
   };
   let heroVisible = true;
   if (hero && video) {
@@ -166,22 +200,25 @@
       video.removeAttribute('autoplay');
       video.pause();
     } else {
-      video.addEventListener('ended', () => {
-        // Bajar solo si el visitante sigue viendo el video
+      // Bajar solo si el visitante sigue viendo el video
+      const advance = () => {
         const stillWatching = hero.getBoundingClientRect().top > -hero.offsetHeight * 0.5;
-        if (nextSection && stillWatching && !document.hidden && !isOpen()) {
-          window.scrollTo({ top: nextSection.getBoundingClientRect().top + window.scrollY, behavior: 'smooth' });
-        }
+        if (nextSection && stillWatching && !document.hidden && !isOpen()) goTo(nextSection);
+      };
+      // Si el video se muestra como imagen animada (no avisa cuando termina), se baja cada 10 s
+      const onHeroSwap = () => window.setInterval(() => { if (heroVisible) advance(); }, 10000);
+      video.addEventListener('ended', () => {
+        advance();
         // ...y vuelve a empezar: nunca se queda congelado
         video.currentTime = 0;
-        if (heroVisible) playSafe(video);
+        if (heroVisible) playSafe(video, onHeroSwap);
       });
-      playSafe(video);
+      playSafe(video, onHeroSwap);
 
       // Fuera de pantalla se pausa (ahorra batería); al volver sigue reproduciéndose
       new IntersectionObserver(([entry]) => {
         heroVisible = entry.isIntersecting;
-        if (heroVisible) playSafe(video); else video.pause();
+        if (heroVisible) playSafe(video, onHeroSwap); else if (!video.dataset.swapped) video.pause();
       }, { threshold: 0.1 }).observe(hero);
     }
   }
@@ -262,6 +299,15 @@
     window.addEventListener('scroll', () => { if (!depthRaf) depthRaf = window.requestAnimationFrame(depth); }, { passive: true });
     window.addEventListener('resize', depth);
     depth();
+  }
+
+  // ---- Botones flotantes: se esconden al llegar al footer (ahí ya están WhatsApp y el teléfono) ----
+  const floats = $('.float-actions');
+  const footerSection = $('.site-footer');
+  if (floats && footerSection && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => {
+      floats.classList.toggle('is-away', entry.isIntersecting);
+    }, { rootMargin: '0px 0px -15% 0px' }).observe(footerSection);
   }
 
   // ---- Carro de lavandería del footer: entra rodando al verse y, con mouse, sigue al cursor en 3D ----
