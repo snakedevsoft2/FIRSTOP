@@ -7,9 +7,12 @@ Publicada en **https://firstop-sigma.vercel.app/**. Es un sitio estático: HTML,
 ## Estructura
 
 ```
-index.html                 Página (contenido, SEO y datos estructurados)
+index.html                 Página en español (contenido, SEO y datos estructurados)
+en/index.html              Página en inglés: se genera desde index.html (no se edita a mano)
+scripts/version-ingles.js  Genera en/index.html
 assets/css/styles.css      Estilos y animaciones
 assets/js/main.js          Menú, idioma ES / EN, videos, profundidad 3D, carro animado y WhatsApp
+assets/fonts/              Fuente Nunito (alojada en el sitio) y su licencia
 assets/images/             Imágenes (fachada, portada del hero, imagen para redes)
 assets/images/servicios/   Una foto por servicio
 assets/images/proceso/     Portada de cada video de sección
@@ -17,9 +20,14 @@ assets/images/carro/       Capas del carro de lavandería del footer
 assets/videos/hero.mp4     Video del hero
 assets/videos/proceso/     Un video corto por sección (la historia de la ropa)
 assets/icons/              Íconos 3D de redes y favicons
-assets/logo/               Logo en SVG (color, blanco e ícono) y PNG
+assets/logo/               Logo "1 Stop Laundry" en SVG y PNG
+vercel.json                Caché de fuentes, fotos y videos en Vercel
 robots.txt, sitemap.xml, site.webmanifest
 ```
+
+## Logo
+
+El logo es el octágono rojo de **1 Stop Laundry**, dibujado en vector (`assets/logo/logo.svg`), así se ve nítido en cualquier tamaño. Está en el header, en el footer, en los íconos (pestaña del navegador, iPhone y Android: `assets/icons/`), en `assets/logo/logo.png` (el que lee Google) y en la imagen para redes (`assets/images/og-image.jpg`). Dentro de `index.html` va entre `<!-- logo:start -->` y `<!-- logo:end -->`.
 
 ## La historia de la ropa (un video por sección)
 
@@ -58,6 +66,8 @@ Para cambiar una foto o un video, reemplaza el archivo y **conserva el mismo nom
 
 Fotos de servicios: horizontales (4:3) y de menos de 150 KB. Videos: MP4 (H.264), 1280 × 720, sin sonido y de menos de 3 MB cada uno.
 
+Los navegadores guardan fotos, íconos y videos por un día (ver `vercel.json`). Si reemplazas uno con el mismo nombre, quien ya visitó la página puede seguir viendo el anterior hasta un día; para que se vea al instante, usa un nombre nuevo y cámbialo también en `index.html`.
+
 ## Datos del negocio
 
 | Dato | Dónde se cambia |
@@ -90,21 +100,38 @@ En celular la página funciona como una app:
 
 ## Idioma (ES / EN)
 
-El selector Español / English, dentro del menú, cambia toda la página entre español e inglés y recuerda la elección de cada visitante. Los textos en inglés están en `index.html`, junto a cada texto en español: `data-en` (texto), `data-en-html` (títulos con resaltado), `data-en-alt`, `data-en-aria-label`, `data-en-title` y `data-wa-en` (mensaje de WhatsApp). Si cambias un texto, cambia también su versión en inglés.
+El selector Español / English, dentro del menú, cambia toda la página entre español e inglés al instante y recuerda la elección de cada visitante. Los textos en inglés están en `index.html`, junto a cada texto en español: `data-en` (texto), `data-en-html` (títulos con resaltado), `data-en-alt`, `data-en-aria-label`, `data-en-title`, `data-en-content` (título y descripción para Google y redes) y `data-wa-en` (mensaje de WhatsApp). Si cambias un texto, cambia también su versión en inglés.
+
+El inglés también tiene su propia dirección, **/en/**, para que Google la muestre a quien busca en inglés (turistas, dueños de Airbnb). Esa página se genera desde `index.html`. **Después de cualquier cambio en `index.html`, corre:**
+
+```
+node scripts/version-ingles.js
+```
+
+y sube también `en/index.html`. Los textos de los datos estructurados que no se ven en la página (descripción del negocio y de cada servicio) se traducen en `LD_EN`, dentro del mismo script; si cambias uno en español, el script avisa que falta su traducción.
 
 ## Publicar
 
 1. **Vercel:** el proyecto está conectado al repositorio de GitHub; cada `push` a `main` publica los cambios solo.
-2. **Dominio:** la dirección oficial es `https://firstop-sigma.vercel.app/`. Si conectas un dominio propio, reemplaza esa dirección en `index.html`, `sitemap.xml` y `robots.txt`.
-3. **Google Search Console:** agrega el sitio y envía `sitemap.xml`.
-4. **Perfil de Google Business:** pon la dirección del sitio como "Sitio web" del negocio.
+2. **Dominio:** la dirección oficial es `https://firstop-sigma.vercel.app/`. Si conectas un dominio propio, reemplaza esa dirección en `index.html`, `sitemap.xml` y `robots.txt`, y vuelve a generar la página en inglés.
+3. **Google Search Console:** agrega el sitio y envía `sitemap.xml` (incluye las dos versiones, español e inglés).
+4. **Perfil de Google Business:** pon la dirección del sitio como "Sitio web" del negocio. El horario, el teléfono y la dirección deben ser los mismos en el perfil y en la página.
 
 Los archivos originales que no usa la página (videos completos y fotos sin optimizar) están en `.gitignore`: siguen en la computadora pero no se suben.
 
 ## SEO incluido
 
-- Título, descripción y encabezados con "lavandería", "dry cleaning", "Río Grande" y "Puerto Rico".
-- Datos estructurados `DryCleaningOrLaundry` (dirección, coordenadas, horario, servicios, pueblos atendidos).
+- Título, descripción y encabezados con "lavandería", "dry cleaning", "Río Grande" y "Puerto Rico" (y en inglés en /en/).
+- Página en español (/) y en inglés (/en/), enlazadas entre sí con `hreflang` y en el `sitemap.xml`, para que Google muestre a cada persona la de su idioma.
+- Datos estructurados `DryCleaningOrLaundry` (dirección, coordenadas, horario, servicios, pueblos atendidos, idiomas y los nombres "1 Stop Laundry" y "Laundry y Dry Cleaning"), más `WebSite` y `WebPage`, en cada idioma.
 - Etiquetas geográficas de Puerto Rico, Open Graph y Twitter Card con imagen para compartir.
 - Imágenes optimizadas (WebP/JPG) con `alt` descriptivo, carga diferida y videos que se descargan solo al acercarse.
-- Respeta la opción "reducir movimiento" del sistema y funciona sin JavaScript.
+- Textos con buen contraste (accesibilidad 100 en Lighthouse). Respeta la opción "reducir movimiento" del sistema y funciona sin JavaScript.
+
+## Velocidad
+
+- La fuente Nunito está alojada en el sitio y se pide primero (antes venía de Google Fonts y retrasaba la primera imagen).
+- La portada del hero se pide con prioridad alta; el video del hero pesa 2.3 MB (sin pista de audio, misma nitidez).
+- Las portadas y los videos de las secciones se descargan solo al acercarse a cada sección.
+- Fuente, fotos, íconos y videos quedan guardados en el navegador (`vercel.json`), así las visitas siguientes cargan más rápido.
+- Resultado en Lighthouse: 100 en velocidad, accesibilidad, buenas prácticas y SEO.
