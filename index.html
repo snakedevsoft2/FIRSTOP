@@ -3,12 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Lavandería y Dry Cleaning en Río Grande, PR | First Stop</title>
-  <meta name="description" content="Lavandería, dry cleaning, planchado y sastrería en Río Grande, Puerto Rico. Recogido y entrega en Luquillo, Fajardo, Canóvanas y el área este. ¡Escríbenos!">
-  <link rel="canonical" href="https://firstop-sigma.vercel.app/">
-  <meta name="robots" content="index, follow, max-image-preview:large">
+  <!-- Versión en inglés (/en/): se genera desde esta página con "node scripts/version-ingles.js".
+       Cada texto en español lleva al lado su traducción (data-en, data-en-html, data-en-content...). -->
+  <title data-en="Laundry &amp; Dry Cleaning in Río Grande, PR | First Stop">Lavandería y Dry Cleaning en Río Grande, PR | First Stop</title>
+  <meta name="description" content="Lavandería, dry cleaning, planchado y sastrería en Río Grande, PR. Recogido y entrega en Luquillo, Fajardo, Canóvanas y el área este. Llama al 787-888-1665."
+        data-en-content="Laundry, dry cleaning, pressing and tailoring in Río Grande, PR. Pickup and delivery in Luquillo, Fajardo, Canóvanas and eastern PR. Call 787-888-1665.">
+  <link rel="canonical" href="https://firstop-sigma.vercel.app/" data-en-href="https://firstop-sigma.vercel.app/en/">
+  <link rel="alternate" hreflang="es" href="https://firstop-sigma.vercel.app/">
+  <link rel="alternate" hreflang="en" href="https://firstop-sigma.vercel.app/en/">
+  <link rel="alternate" hreflang="x-default" href="https://firstop-sigma.vercel.app/">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="theme-color" content="#173F73">
   <meta name="format-detection" content="telephone=no">
+
+  <!-- Carga rápida: la fuente y la portada del hero se piden primero -->
+  <link rel="preload" href="assets/fonts/nunito-latin-v32.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" href="assets/images/hero-poster.webp" fetchpriority="high">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>document.documentElement.classList.add('js');</script>
 
   <!-- SEO local: Puerto Rico -->
   <meta name="geo.region" content="US-PR">
@@ -18,31 +30,25 @@
 
   <!-- Open Graph / redes sociales -->
   <meta property="og:type" content="website">
-  <meta property="og:locale" content="es_PR">
+  <meta property="og:locale" content="es_PR" data-en-content="en_US">
+  <meta property="og:locale:alternate" content="en_US" data-en-content="es_PR">
   <meta property="og:site_name" content="First Stop Laundry &amp; Sastrería">
-  <meta property="og:title" content="Lavandería y Dry Cleaning en Río Grande, Puerto Rico">
-  <meta property="og:description" content="Lavado, dry cleaning, planchado y sastrería con recogido y entrega en el área este de Puerto Rico.">
-  <meta property="og:url" content="https://firstop-sigma.vercel.app/">
+  <meta property="og:title" content="Lavandería y Dry Cleaning en Río Grande, Puerto Rico" data-en-content="Laundry &amp; Dry Cleaning in Río Grande, Puerto Rico">
+  <meta property="og:description" content="Lavado, dry cleaning, planchado y sastrería con recogido y entrega en el área este de Puerto Rico." data-en-content="Washing, dry cleaning, pressing and tailoring with pickup and delivery in eastern Puerto Rico.">
+  <meta property="og:url" content="https://firstop-sigma.vercel.app/" data-en-content="https://firstop-sigma.vercel.app/en/">
   <meta property="og:image" content="https://firstop-sigma.vercel.app/assets/images/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="First Stop Laundry &amp; Sastrería – Lavandería y Dry Cleaning en Río Grande, Puerto Rico">
+  <meta property="og:image:alt" content="First Stop Laundry &amp; Sastrería – Lavandería y Dry Cleaning en Río Grande, Puerto Rico" data-en-content="First Stop Laundry &amp; Sastrería – Laundry &amp; Dry Cleaning in Río Grande, Puerto Rico">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Lavandería y Dry Cleaning en Río Grande, Puerto Rico">
-  <meta name="twitter:description" content="Lavado, dry cleaning, planchado y sastrería con recogido y entrega en el área este de Puerto Rico.">
+  <meta name="twitter:title" content="Lavandería y Dry Cleaning en Río Grande, Puerto Rico" data-en-content="Laundry &amp; Dry Cleaning in Río Grande, Puerto Rico">
+  <meta name="twitter:description" content="Lavado, dry cleaning, planchado y sastrería con recogido y entrega en el área este de Puerto Rico." data-en-content="Washing, dry cleaning, pressing and tailoring with pickup and delivery in eastern Puerto Rico.">
   <meta name="twitter:image" content="https://firstop-sigma.vercel.app/assets/images/og-image.jpg">
 
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400..900&amp;display=swap">
-  <link rel="preload" as="image" href="assets/images/hero-poster.webp" fetchpriority="high">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <script>document.documentElement.classList.add('js');</script>
 
   <script type="application/ld+json">
   {
@@ -112,6 +118,7 @@
           { "@type": "LocationFeatureSpecification", "name": "Entrada accesible para silla de ruedas", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "Estacionamiento accesible", "value": true }
         ],
+        "knowsLanguage": ["es", "en"],
         "currenciesAccepted": "USD",
         "sameAs": [
           "https://www.google.com/maps/place/?q=place_id:ChIJtUC9EbyfBIwR-CLt6le5Oa4"
@@ -134,8 +141,19 @@
         "@id": "https://firstop-sigma.vercel.app/#web",
         "url": "https://firstop-sigma.vercel.app/",
         "name": "First Stop Laundry & Sastrería",
-        "inLanguage": "es-PR",
+        "inLanguage": ["es-PR", "en"],
         "publisher": { "@id": "https://firstop-sigma.vercel.app/#negocio" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://firstop-sigma.vercel.app/#pagina",
+        "url": "https://firstop-sigma.vercel.app/",
+        "name": "Lavandería y Dry Cleaning en Río Grande, PR | First Stop",
+        "description": "Lavandería, dry cleaning, planchado y sastrería en Río Grande, PR. Recogido y entrega en Luquillo, Fajardo, Canóvanas y el área este. Llama al 787-888-1665.",
+        "inLanguage": "es-PR",
+        "isPartOf": { "@id": "https://firstop-sigma.vercel.app/#web" },
+        "about": { "@id": "https://firstop-sigma.vercel.app/#negocio" },
+        "primaryImageOfPage": { "@type": "ImageObject", "url": "https://firstop-sigma.vercel.app/assets/images/og-image.jpg", "width": 1200, "height": 630 }
       }
     ]
   }
@@ -246,7 +264,7 @@
     <!-- ============ BIENVENIDA (las letras grandes) ============ -->
     <section class="section intro scene" id="bienvenida" aria-labelledby="intro-title">
       <div class="scene-bg scene-bg--white" aria-hidden="true">
-        <video class="scene-video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback poster="assets/images/proceso/ropa-cae.webp">
+        <video class="scene-video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback data-poster="assets/images/proceso/ropa-cae.webp">
           <source src="assets/videos/proceso/ropa-cae.mp4" type="video/mp4">
         </video>
       </div>
@@ -307,7 +325,7 @@
       <div class="container">
         <div class="scene scene--head">
           <div class="scene-bg scene-bg--white" aria-hidden="true">
-            <video class="scene-video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback poster="assets/images/proceso/ropa-recogida.webp">
+            <video class="scene-video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback data-poster="assets/images/proceso/ropa-recogida.webp">
               <source src="assets/videos/proceso/ropa-recogida.mp4" type="video/mp4">
             </video>
           </div>
@@ -404,7 +422,7 @@
       <div class="container">
         <div class="scene scene--head scene--room">
           <div class="scene-bg scene-bg--room" aria-hidden="true">
-            <video class="scene-video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback poster="assets/images/proceso/ropa-lavadora.webp">
+            <video class="scene-video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback data-poster="assets/images/proceso/ropa-lavadora.webp">
               <source src="assets/videos/proceso/ropa-lavadora.mp4" type="video/mp4">
             </video>
           </div>

@@ -12,26 +12,18 @@
   const saveData = Boolean(navigator.connection && navigator.connection.saveData);
 
   // ---- Idioma: español / inglés ----
-  // Los textos en inglés están en el HTML (data-en, data-en-html, data-en-aria-label, data-en-alt, data-en-title).
-  const metaDesc = $('meta[name="description"]');
-  const UI = {
-    es: {
-      title: document.title,
-      description: metaDesc ? metaDesc.content : '',
-    },
-    en: {
-      title: 'Laundry & Dry Cleaning in Río Grande, PR | First Stop',
-      description: 'Laundry, dry cleaning, pressing and tailoring in Río Grande, Puerto Rico. Pickup and delivery in Luquillo, Fajardo, Canóvanas and the east area.',
-    },
-  };
-  const ATTRS = ['aria-label', 'alt', 'title'];
-  let lang = 'es';
+  // Los textos en inglés están en el HTML (data-en, data-en-html, data-en-aria-label, data-en-alt, data-en-title,
+  // data-en-content, data-en-href). El inglés también tiene su propia dirección (/en/) para que Google lo encuentre;
+  // el botón cambia el idioma al instante, sin recargar, y la elección se recuerda en las dos direcciones.
+  const ATTRS = ['aria-label', 'alt', 'title', 'content', 'href'];
+  const pageLang = document.documentElement.lang.startsWith('en') ? 'en' : 'es';
+  let lang = pageLang;
 
-  // Guardar los textos originales en español
-  $$('[data-en]').forEach((el) => { el.dataset.es = el.textContent; });
-  $$('[data-en-html]').forEach((el) => { el.dataset.esHtml = el.innerHTML; });
+  // Guardar los textos en español (en /en/ ya vienen escritos en la página)
+  $$('[data-en]').forEach((el) => { if (el.dataset.es === undefined) el.dataset.es = el.textContent; });
+  $$('[data-en-html]').forEach((el) => { if (el.dataset.esHtml === undefined) el.dataset.esHtml = el.innerHTML; });
   ATTRS.forEach((attr) => $$(`[data-en-${attr}]`).forEach((el) => {
-    el.setAttribute(`data-es-${attr}`, el.getAttribute(attr) || '');
+    if (!el.hasAttribute(`data-es-${attr}`)) el.setAttribute(`data-es-${attr}`, el.getAttribute(attr) || '');
   }));
 
   // Enlaces de WhatsApp con el mensaje listo en el idioma elegido
@@ -51,8 +43,6 @@
     ATTRS.forEach((attr) => $$(`[data-en-${attr}]`).forEach((el) => {
       el.setAttribute(attr, el.getAttribute(`data-${en ? 'en' : 'es'}-${attr}`));
     }));
-    document.title = UI[lang].title;
-    if (metaDesc) metaDesc.content = UI[lang].description;
     $$('.lang-switch [data-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
     updateWaLinks();
     document.dispatchEvent(new CustomEvent('langchange'));
@@ -61,9 +51,10 @@
     }
   };
 
+  // Si el visitante ya había elegido un idioma, la página se muestra en ese idioma
   let savedLang = null;
   try { savedLang = window.localStorage.getItem('fs-lang'); } catch (_) { /* sin almacenamiento */ }
-  if (savedLang === 'en') applyLang('en', false);
+  if ((savedLang === 'en' || savedLang === 'es') && savedLang !== pageLang) applyLang(savedLang, false);
   else updateWaLinks();
 
   $$('.lang-switch [data-lang]').forEach((b) => b.addEventListener('click', () => applyLang(b.dataset.lang, true)));
@@ -225,12 +216,17 @@
 
   // ---- Videos de cada sección ----
   // Cada escena tiene su propio video corto en bucle (su final se funde con el inicio, así nunca se ve
-  // parado). Se descarga al acercarse y se reproduce mientras se ve; fuera de pantalla se pausa.
+  // parado). Su portada y el video se descargan al acercarse (no compiten con la carga inicial) y el video
+  // se reproduce mientras se ve; fuera de pantalla se pausa.
   // Con "reducir movimiento" o ahorro de datos se queda la imagen de portada.
   const scenes = $$('.scene').filter((s) => $('.scene-video', s));
+  const videoOf = (scene) => $('.scene-video', scene);
+  const showPoster = (v) => { if (v.dataset.poster && !v.getAttribute('poster')) v.poster = v.dataset.poster; };
+  const playScenes = !reduceMotion && !saveData;
   const visibleVideos = new Set();
-  if (scenes.length && !reduceMotion && !saveData) {
-    const videoOf = (scene) => $('.scene-video', scene);
+  if (scenes.length && !('IntersectionObserver' in window)) {
+    scenes.forEach((s) => showPoster(videoOf(s)));
+  } else if (scenes.length) {
     const prepare = (v) => {
       if (v.dataset.ready) return;
       v.dataset.ready = '1';
@@ -243,25 +239,32 @@
 
     const near = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
-        if (e.isIntersecting) { prepare(videoOf(e.target)); near.unobserve(e.target); }
+        if (!e.isIntersecting) return;
+        const v = videoOf(e.target);
+        showPoster(v);
+        if (playScenes) prepare(v);
+        near.unobserve(e.target);
       });
     }, { rootMargin: '150% 0px' });
     scenes.forEach((s) => near.observe(s));
 
-    const view = new IntersectionObserver((entries) => {
-      entries.forEach(({ target, isIntersecting }) => {
-        const v = videoOf(target);
-        if (isIntersecting) {
-          visibleVideos.add(v);
-          prepare(v);
-          playSafe(v);
-        } else {
-          visibleVideos.delete(v);
-          v.pause();
-        }
-      });
-    }, { threshold: 0.15 });
-    scenes.forEach((s) => view.observe(s));
+    if (playScenes) {
+      const view = new IntersectionObserver((entries) => {
+        entries.forEach(({ target, isIntersecting }) => {
+          const v = videoOf(target);
+          if (isIntersecting) {
+            visibleVideos.add(v);
+            showPoster(v);
+            prepare(v);
+            playSafe(v);
+          } else {
+            visibleVideos.delete(v);
+            v.pause();
+          }
+        });
+      }, { threshold: 0.15 });
+      scenes.forEach((s) => view.observe(s));
+    }
   }
 
   // Si el navegador bloquea la reproducción automática (por ejemplo, con el ahorro de batería
