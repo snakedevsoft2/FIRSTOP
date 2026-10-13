@@ -11,9 +11,10 @@ index.html                 Página en español (contenido, SEO y datos estructur
 en/index.html              Página en inglés: se genera desde index.html (no se edita a mano)
 scripts/version-ingles.js  Genera en/index.html
 assets/css/styles.css      Estilos y animaciones
-assets/js/main.js          Menú, idioma ES / EN, videos, profundidad 3D, carro animado y WhatsApp
+assets/js/main.js          Menú, idioma ES / EN, videos, profundidad 3D, fotos del local, carro animado y WhatsApp
 assets/fonts/              Fuente Nunito (alojada en el sitio) y su licencia
-assets/images/             Imágenes (fachada, portada del hero, imagen para redes)
+assets/images/             Imágenes (portada del hero, imagen para redes)
+assets/images/local/       Fotos del local (fachada, entrada y estacionamiento) de la sección Nosotros
 assets/images/servicios/   Una foto por servicio
 assets/images/proceso/     Portada de cada video de sección
 assets/images/carro/       Capas del carro de lavandería del footer
@@ -43,6 +44,10 @@ El logo es el octágono rojo de **1 Stop Laundry**, dibujado en vector (`assets/
 - **Celular:** diseño propio. El video va completo, a todo el ancho, y los textos quedan arriba o abajo (nunca encima), sin efecto 3D para que se vea nítido.
 - Con "reducir movimiento" activado, o con ahorro de datos, se queda la imagen de portada.
 
+## Fotos del local (Nosotros)
+
+Las 3 fotos del local (fachada con el letrero, entrada y estacionamiento) pasan solas cada 5 segundos mientras se ven, con un fundido suave. Debajo hay 3 puntos para elegir una foto; en celular también se puede deslizar de lado. Al elegir una, se queda en ella. Con el mouse encima se detienen, y con "reducir movimiento" no pasan solas. Están en `assets/images/local/` (WebP de 1080 × 810).
+
 ## Carro de lavandería (footer)
 
 Un carro con ropa estacionado sobre el mapa, que asoma por encima del footer. Cuando el footer aparece en pantalla, el carro entra rodando. Después gira despacio en 3D, le caen prendas cada pocos segundos y la ropa rebota al recibirlas. Con mouse, el carro sigue al cursor. Está hecho con capas (`assets/images/carro/`): fondo del carro, montón de ropa, prendas que caen y frente del carro, cada una a distinta profundidad para que se note el volumen al girar.
@@ -62,9 +67,12 @@ Para cambiar una foto o un video, reemplaza el archivo y **conserva el mismo nom
 | Comforters y ropa de cama | `assets/images/servicios/comforters-ropa-de-cama.jpg` |
 | Hoteles y Airbnbs | `assets/images/servicios/hoteles-y-airbnb.jpg` |
 | Recogido y entrega | `assets/images/servicios/recogido-y-entrega.jpg` |
-| Foto de Nosotros | `assets/images/fachada-laundry-dry-cleaning-rio-grande.webp` |
+| Fotos del local (Nosotros) | `assets/images/local/1-stop-laundry-rio-grande-fachada.webp`, `-entrada.webp` y `-estacionamiento.webp` |
+| Imagen al compartir la página (WhatsApp, Facebook) | `assets/images/og-image.jpg` (1200 × 630) |
 
-Fotos de servicios: horizontales (4:3) y de menos de 150 KB. Videos: MP4 (H.264), 1280 × 720, sin sonido y de menos de 3 MB cada uno.
+Fotos de servicios y del local: horizontales (4:3) y de menos de 150 KB. Videos: MP4 (H.264), 1280 × 720, sin sonido y de menos de 3 MB cada uno.
+
+La imagen para compartir (`og-image.jpg`) muestra la entrada del local, el logo y **los dos teléfonos**: si cambia un número, hay que rehacerla. Después de reemplazarla, cambia el número que va después de `og-image.jpg?v=` en `index.html` (por ejemplo, la fecha del día). Si no, WhatsApp y Facebook siguen mostrando la anterior.
 
 Los navegadores guardan fotos, íconos y videos por un día (ver `vercel.json`). Si reemplazas uno con el mismo nombre, quien ya visitó la página puede seguir viendo el anterior hasta un día; para que se vea al instante, usa un nombre nuevo y cámbialo también en `index.html`.
 
@@ -72,10 +80,10 @@ Los navegadores guardan fotos, íconos y videos por un día (ver `vercel.json`).
 
 | Dato | Dónde se cambia |
 | --- | --- |
-| Teléfono (787-888-1665) | `index.html`, botón flotante de llamar (busca `7878881665` y `787-888-1665`) |
-| WhatsApp (939-655-5329) | `assets/js/main.js` (`WHATSAPP`) y `index.html` (busca `19396555329` y `939-655-5329`) |
-| Horario | `index.html` (sección Horario y `openingHoursSpecification`) |
-| Facebook e Instagram | `index.html`, en "Canales oficiales" (hoy apuntan a facebook.com e instagram.com) |
+| Teléfono (787-888-1665) | `index.html`, botón flotante de llamar y botón "Llamar" del footer (busca `7878881665` y `787-888-1665`) y `og-image.jpg` |
+| WhatsApp (332-231-5033) | `assets/js/main.js` (`WHATSAPP`), `index.html` (busca `13322315033` y `332-231-5033`) y `og-image.jpg` |
+| Horario (Lun – Vie 7:00 a.m. – 5:00 p.m., Sáb 7:00 a.m. – 4:00 p.m., Dom cerrado) | `index.html` (sección Horario y `openingHoursSpecification`) |
+| Facebook e Instagram | `index.html`, en "Canales oficiales". Están escondidos hasta tener las páginas oficiales: pon la URL, quita el comentario y agrégala también en `sameAs` |
 
 ## Hero
 
@@ -124,7 +132,8 @@ Los archivos originales que no usa la página (videos completos y fotos sin opti
 - Título, descripción y encabezados con "lavandería", "dry cleaning", "Río Grande" y "Puerto Rico" (y en inglés en /en/).
 - Página en español (/) y en inglés (/en/), enlazadas entre sí con `hreflang` y en el `sitemap.xml`, para que Google muestre a cada persona la de su idioma.
 - Datos estructurados `DryCleaningOrLaundry` (dirección, coordenadas, horario, servicios, pueblos atendidos, idiomas y los nombres "1 Stop Laundry" y "Laundry y Dry Cleaning"), más `WebSite` y `WebPage`, en cada idioma.
-- Etiquetas geográficas de Puerto Rico, Open Graph y Twitter Card con imagen para compartir.
+- Etiquetas geográficas de Puerto Rico, Open Graph y Twitter Card con imagen para compartir (la entrada real del local).
+- Las fotos reales del local están en los datos estructurados (`image`) y en el `sitemap.xml`, con nombres y `alt` que dicen qué son y dónde están.
 - Imágenes optimizadas (WebP/JPG) con `alt` descriptivo, carga diferida y videos que se descargan solo al acercarse.
 - Textos con buen contraste (accesibilidad 100 en Lighthouse). Respeta la opción "reducir movimiento" del sistema y funciona sin JavaScript.
 

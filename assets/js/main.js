@@ -3,7 +3,7 @@
   'use strict';
 
   // ---- Datos del negocio (cámbialos aquí si cambian) ----
-  const WHATSAPP = '19396555329';
+  const WHATSAPP = '13322315033';
   const TIME_ZONE = 'America/Puerto_Rico';
 
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
@@ -356,6 +356,66 @@
         card.style.transform = '';
       });
     });
+  }
+
+  // ---- Fotos del local (Nosotros): pasan solas cada 5 s mientras se ven ----
+  // Con el mouse encima o con el teclado dentro se detienen. Al tocar un punto o deslizar de lado,
+  // se queda en la foto elegida (ya no pasan solas). Con "reducir movimiento" no pasan solas.
+  const gallery = $('.local-gallery');
+  if (gallery) {
+    const slides = $$('.local-slide', gallery);
+    const dots = $$('.local-dot', gallery);
+    let current = 0;
+    let timer = 0;
+    let auto = !reduceMotion && slides.length > 1;
+    let inView = false;
+    let paused = false;
+
+    const show = (i) => {
+      current = (i + slides.length) % slides.length;
+      slides.forEach((s, n) => s.classList.toggle('is-active', n === current));
+      dots.forEach((d, n) => d.setAttribute('aria-pressed', String(n === current)));
+    };
+    const schedule = () => {
+      window.clearTimeout(timer);
+      if (auto && inView && !paused && !document.hidden) {
+        timer = window.setTimeout(() => { show(current + 1); schedule(); }, 5000);
+      }
+    };
+    const choose = (i) => {
+      auto = false;
+      window.clearTimeout(timer);
+      show(i);
+    };
+
+    dots.forEach((d, n) => d.addEventListener('click', () => choose(n)));
+
+    // Deslizar de lado (celular) o arrastrar con el mouse
+    let start = null;
+    const track = $('.local-slides', gallery);
+    track.addEventListener('pointerdown', (e) => { start = { x: e.clientX, y: e.clientY }; });
+    track.addEventListener('pointerup', (e) => {
+      if (!start) return;
+      const dx = e.clientX - start.x;
+      const dy = e.clientY - start.y;
+      start = null;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) choose(current + (dx < 0 ? 1 : -1));
+    });
+    track.addEventListener('pointercancel', () => { start = null; });
+
+    const pause = (on) => { paused = on; schedule(); };
+    gallery.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') pause(true); });
+    gallery.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') pause(false); });
+    gallery.addEventListener('focusin', () => pause(true));
+    gallery.addEventListener('focusout', () => pause(false));
+    document.addEventListener('visibilitychange', schedule);
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([entry]) => {
+        inView = entry.isIntersecting;
+        schedule();
+      }, { threshold: 0.4 }).observe(gallery);
+    }
   }
 
   // ---- Horario: resaltar el día de hoy (hora de Puerto Rico) ----

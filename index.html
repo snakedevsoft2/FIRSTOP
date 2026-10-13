@@ -36,14 +36,15 @@
   <meta property="og:title" content="Lavandería y Dry Cleaning en Río Grande, Puerto Rico" data-en-content="Laundry &amp; Dry Cleaning in Río Grande, Puerto Rico">
   <meta property="og:description" content="Lavado, dry cleaning, planchado y sastrería con recogido y entrega en el área este de Puerto Rico." data-en-content="Washing, dry cleaning, pressing and tailoring with pickup and delivery in eastern Puerto Rico.">
   <meta property="og:url" content="https://firstop-sigma.vercel.app/" data-en-content="https://firstop-sigma.vercel.app/en/">
-  <meta property="og:image" content="https://firstop-sigma.vercel.app/assets/images/og-image.jpg">
+  <!-- "?v=" obliga a WhatsApp y Facebook a mostrar la imagen nueva: cámbialo cada vez que cambies og-image.jpg -->
+  <meta property="og:image" content="https://firstop-sigma.vercel.app/assets/images/og-image.jpg?v=20261013">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="First Stop Laundry &amp; Sastrería – Lavandería y Dry Cleaning en Río Grande, Puerto Rico" data-en-content="First Stop Laundry &amp; Sastrería – Laundry &amp; Dry Cleaning in Río Grande, Puerto Rico">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Lavandería y Dry Cleaning en Río Grande, Puerto Rico" data-en-content="Laundry &amp; Dry Cleaning in Río Grande, Puerto Rico">
   <meta name="twitter:description" content="Lavado, dry cleaning, planchado y sastrería con recogido y entrega en el área este de Puerto Rico." data-en-content="Washing, dry cleaning, pressing and tailoring with pickup and delivery in eastern Puerto Rico.">
-  <meta name="twitter:image" content="https://firstop-sigma.vercel.app/assets/images/og-image.jpg">
+  <meta name="twitter:image" content="https://firstop-sigma.vercel.app/assets/images/og-image.jpg?v=20261013">
 
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
@@ -64,7 +65,9 @@
         "logo": "https://firstop-sigma.vercel.app/assets/logo/logo.png",
         "image": [
           "https://firstop-sigma.vercel.app/assets/images/og-image.jpg",
-          "https://firstop-sigma.vercel.app/assets/images/fachada-laundry-dry-cleaning-rio-grande.webp"
+          "https://firstop-sigma.vercel.app/assets/images/local/1-stop-laundry-rio-grande-fachada.webp",
+          "https://firstop-sigma.vercel.app/assets/images/local/1-stop-laundry-rio-grande-entrada.webp",
+          "https://firstop-sigma.vercel.app/assets/images/local/1-stop-laundry-rio-grande-estacionamiento.webp"
         ],
         "telephone": "+1-787-888-1665",
         "email": "marcanopr@gmail.com",
@@ -86,14 +89,14 @@
           {
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "08:00",
-            "closes": "17:30"
+            "opens": "07:00",
+            "closes": "17:00"
           },
           {
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": "Saturday",
-            "opens": "09:00",
-            "closes": "14:00"
+            "opens": "07:00",
+            "closes": "16:00"
           }
         ],
         "areaServed": [
@@ -109,7 +112,7 @@
           {
             "@type": "ContactPoint",
             "contactType": "customer service",
-            "telephone": "+1-939-655-5329",
+            "telephone": "+1-332-231-5033",
             "areaServed": "PR",
             "availableLanguage": ["Spanish", "English"]
           }
@@ -240,7 +243,7 @@
           <span class="line"><span class="accent" data-en="in Río Grande">en Río Grande</span></span>
         </h1>
         <p class="intro-text reveal" style="--i:3" data-en="Washing, pressing and tailoring with home pickup and delivery in eastern Puerto Rico.">Lavado, planchado y sastrería con recogido y entrega a domicilio en el este de Puerto Rico.</p>
-        <a class="btn btn-brand btn-lg intro-cta reveal" style="--i:4" href="https://wa.me/19396555329" data-wa="¡Hola First Stop! Quiero coordinar un recogido." data-wa-en="Hi First Stop! I'd like to schedule a pickup." target="_blank" rel="noopener" data-en="Request pickup">Solicitar recogido</a>
+        <a class="btn btn-brand btn-lg intro-cta reveal" style="--i:4" href="https://wa.me/13322315033" data-wa="¡Hola First Stop! Quiero coordinar un recogido." data-wa-en="Hi First Stop! I'd like to schedule a pickup." target="_blank" rel="noopener" data-en="Request pickup">Solicitar recogido</a>
       </div>
     </section>
 
@@ -250,7 +253,7 @@
 
         <header class="section-head reveal">
           <h2 class="section-title" id="about-title" data-en-html='We care for your clothes <span class="hl">as if they were ours</span>'>Cuidamos tu ropa <span class="hl">como si fuera nuestra</span></h2>
-          <p class="section-lead" data-en="A local, family-run business on Route 3 in Río Grande.">Un negocio local y familiar en la Carr. 3 de Río Grande.</p>
+          <p class="section-lead" data-en="A local, family-run business on Route 3 in Río Grande, with parking and ramp access.">Un negocio local y familiar en la Carr. 3 de Río Grande, con estacionamiento y rampa de acceso.</p>
         </header>
 
         <div class="about-grid">
@@ -265,10 +268,25 @@
             </li>
           </ul>
 
-          <figure class="about-media reveal" data-reveal="zoom">
-            <img src="assets/images/fachada-laundry-dry-cleaning-rio-grande.webp" width="706" height="703" loading="lazy" decoding="async"
-                 alt="Fachada de Laundry y Dry Cleaning (First Stop) en la Carr. 3 km 26.5 de Río Grande, Puerto Rico"
-                 data-en-alt="Laundry y Dry Cleaning (First Stop) storefront at Route 3, km 26.5, Río Grande, Puerto Rico">
+          <!-- Fotos del local: pasan solas mientras se ven; los puntos (o deslizar) cambian de foto.
+               Para cambiarlas, reemplaza los archivos en assets/images/local/ con el mismo nombre. -->
+          <figure class="about-media local-gallery reveal" data-reveal="zoom">
+            <div class="local-slides">
+              <img class="local-slide is-active" src="assets/images/local/1-stop-laundry-rio-grande-fachada.webp" width="1080" height="810" loading="lazy" decoding="async"
+                   alt="Fachada de 1 Stop Laundry con su letrero y la rampa de entrada, en la Carr. 3 km 26.5 de Río Grande, Puerto Rico"
+                   data-en-alt="1 Stop Laundry storefront with its sign and entrance ramp, at Route 3, km 26.5, Río Grande, Puerto Rico">
+              <img class="local-slide" src="assets/images/local/1-stop-laundry-rio-grande-entrada.webp" width="1080" height="810" loading="lazy" decoding="async"
+                   alt="Entrada de la lavandería con el letrero de abierto, laundry y sastrería, y el teléfono 888-1665"
+                   data-en-alt="Laundry entrance with the open, laundry and tailoring sign, and the phone number 888-1665">
+              <img class="local-slide" src="assets/images/local/1-stop-laundry-rio-grande-estacionamiento.webp" width="1080" height="810" loading="lazy" decoding="async"
+                   alt="Estacionamiento frente a 1 Stop Laundry en Río Grande, Puerto Rico"
+                   data-en-alt="Parking in front of 1 Stop Laundry in Río Grande, Puerto Rico">
+            </div>
+            <div class="local-dots" role="group" aria-label="Fotos del local" data-en-aria-label="Photos of the store">
+              <button type="button" class="local-dot" aria-pressed="true" aria-label="Foto 1: fachada" data-en-aria-label="Photo 1: storefront"></button>
+              <button type="button" class="local-dot" aria-pressed="false" aria-label="Foto 2: entrada" data-en-aria-label="Photo 2: entrance"></button>
+              <button type="button" class="local-dot" aria-pressed="false" aria-label="Foto 3: estacionamiento" data-en-aria-label="Photo 3: parking"></button>
+            </div>
           </figure>
 
           <ul class="about-features" role="list">
@@ -309,7 +327,7 @@
               <div class="service-body">
                 <h3 data-en="Wash &amp; fold">Lavado y doblado</h3>
                 <p data-en="Everyday clothes, washed and folded.">Ropa del diario, lavada y doblada.</p>
-                <a class="service-link" href="https://wa.me/19396555329" data-wa="¡Hola! Quiero cotizar el servicio de lavado y doblado." data-wa-en="Hi! I'd like a quote for wash and fold." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg><span data-en="Get a quote">Cotizar</span></a>
+                <a class="service-link" href="https://wa.me/13322315033" data-wa="¡Hola! Quiero cotizar el servicio de lavado y doblado." data-wa-en="Hi! I'd like a quote for wash and fold." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg><span data-en="Get a quote">Cotizar</span></a>
               </div>
             </article>
           </li>
@@ -321,7 +339,7 @@
               <div class="service-body">
                 <h3 data-en="Dry cleaning &amp; pressing">Dry cleaning y planchado</h3>
                 <p data-en="Spotless suits, dresses and shirts.">Trajes, vestidos y camisas impecables.</p>
-                <a class="service-link" href="https://wa.me/19396555329" data-wa="¡Hola! Quiero cotizar dry cleaning y planchado." data-wa-en="Hi! I'd like a quote for dry cleaning and pressing." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg><span data-en="Get a quote">Cotizar</span></a>
+                <a class="service-link" href="https://wa.me/13322315033" data-wa="¡Hola! Quiero cotizar dry cleaning y planchado." data-wa-en="Hi! I'd like a quote for dry cleaning and pressing." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg><span data-en="Get a quote">Cotizar</span></a>
               </div>
             </article>
           </li>
@@ -333,7 +351,7 @@
               <div class="service-body">
                 <h3 data-en="Tailoring &amp; alterations">Sastrería y alteraciones</h3>
                 <p data-en="Hems, zippers and custom fittings.">Ruedos, zippers y ajustes a tu medida.</p>
-                <a class="service-link" href="https://wa.me/19396555329" data-wa="¡Hola! Necesito un arreglo de sastrería." data-wa-en="Hi! I need a tailoring alteration." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg><span data-en="Get a quote">Cotizar</span></a>
+                <a class="service-link" href="https://wa.me/13322315033" data-wa="¡Hola! Necesito un arreglo de sastrería." data-wa-en="Hi! I need a tailoring alteration." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg><span data-en="Get a quote">Cotizar</span></a>
               </div>
             </article>
           </li>
@@ -345,7 +363,7 @@
               <div class="service-body">
                 <h3 data-en="Comforters &amp; bedding">Comforters y ropa de cama</h3>
                 <p data-en="Fresh comforters and sheets.">Comforters y sábanas frescos.</p>
-                <a class="service-link" href="https://wa.me/19396555329" data-wa="¡Hola! Quiero lavar comforters y ropa de cama." data-wa-en="Hi! I'd like to wash comforters and bedding." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg><span data-en="Get a quote">Cotizar</span></a>
+                <a class="service-link" href="https://wa.me/13322315033" data-wa="¡Hola! Quiero lavar comforters y ropa de cama." data-wa-en="Hi! I'd like to wash comforters and bedding." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg><span data-en="Get a quote">Cotizar</span></a>
               </div>
             </article>
           </li>
@@ -357,7 +375,7 @@
               <div class="service-body">
                 <h3 data-en="Hotels &amp; Airbnbs">Hoteles y Airbnbs</h3>
                 <p data-en="Sheets and towels for your rental.">Sábanas y toallas para tu alojamiento.</p>
-                <a class="service-link" href="https://wa.me/19396555329" data-wa="¡Hola! Me interesa el servicio de lavandería para mi hotel o Airbnb." data-wa-en="Hi! I'm interested in laundry service for my hotel or Airbnb." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg><span data-en="Get a quote">Cotizar</span></a>
+                <a class="service-link" href="https://wa.me/13322315033" data-wa="¡Hola! Me interesa el servicio de lavandería para mi hotel o Airbnb." data-wa-en="Hi! I'm interested in laundry service for my hotel or Airbnb." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg><span data-en="Get a quote">Cotizar</span></a>
               </div>
             </article>
           </li>
@@ -369,7 +387,7 @@
               <div class="service-body">
                 <h3 data-en="Pickup &amp; delivery">Recogido y entrega</h3>
                 <p data-en="We pick up your laundry and bring it back.">Pasamos por tu ropa y te la llevamos.</p>
-                <a class="service-link" href="https://wa.me/19396555329" data-wa="¡Hola! Quiero coordinar un recogido a domicilio." data-wa-en="Hi! I'd like to schedule a home pickup." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg><span data-en="Schedule">Coordinar</span></a>
+                <a class="service-link" href="https://wa.me/13322315033" data-wa="¡Hola! Quiero coordinar un recogido a domicilio." data-wa-en="Hi! I'd like to schedule a home pickup." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg><span data-en="Schedule">Coordinar</span></a>
               </div>
             </article>
           </li>
@@ -399,7 +417,7 @@
             <li class="reveal" style="--i:3"><span class="step-num" aria-hidden="true">2</span><span data-en="We wash and fold it">La lavamos y doblamos</span></li>
             <li class="reveal" style="--i:4"><span class="step-num" aria-hidden="true">3</span><span data-en="We deliver it ready">Te la entregamos lista</span></li>
           </ol>
-          <a class="btn btn-brand btn-lg process-cta reveal" style="--i:5" href="https://wa.me/19396555329" data-wa="¡Hola First Stop! Quiero coordinar un recogido." data-wa-en="Hi First Stop! I'd like to schedule a pickup." target="_blank" rel="noopener" data-en="Request pickup">Solicitar recogido</a>
+          <a class="btn btn-brand btn-lg process-cta reveal" style="--i:5" href="https://wa.me/13322315033" data-wa="¡Hola First Stop! Quiero coordinar un recogido." data-wa-en="Hi First Stop! I'd like to schedule a pickup." target="_blank" rel="noopener" data-en="Request pickup">Solicitar recogido</a>
           </div>
         </div>
       </div>
@@ -449,24 +467,26 @@
               Carr. PR-3 km 26.5, Bo. Juan González<br>Río Grande, PR 00745
             </a>
           </address>
+          <a class="footer-phone" href="tel:+17878881665"><svg aria-hidden="true"><use href="#i-phone"/></svg><span data-en="Call">Llamar</span> 787-888-1665</a>
           <ul class="socials" role="list" aria-label="Canales oficiales" data-en-aria-label="Official channels">
             <li>
-              <a href="https://wa.me/19396555329" data-wa="¡Hola First Stop! Quiero información sobre sus servicios." data-wa-en="Hi First Stop! I'd like information about your services." target="_blank" rel="noopener" aria-label="WhatsApp">
+              <a href="https://wa.me/13322315033" data-wa="¡Hola First Stop! Quiero información sobre sus servicios." data-wa-en="Hi First Stop! I'd like information about your services." target="_blank" rel="noopener" aria-label="WhatsApp">
                 <img src="assets/icons/whatsapp-3d.webp" width="56" height="56" loading="lazy" alt="">
               </a>
             </li>
+            <!-- Facebook e Instagram: escondidos hasta tener las páginas oficiales del negocio.
+                 Para mostrarlos, pon la URL de la página en href y quita los comentarios (y agrégala en "sameAs").
             <li>
-              <!-- Reemplaza por la URL oficial de Facebook -->
-              <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+              <a href="https://www.facebook.com/PAGINA-DEL-NEGOCIO" target="_blank" rel="noopener" aria-label="Facebook">
                 <img src="assets/icons/facebook-3d.webp" width="56" height="56" loading="lazy" alt="">
               </a>
             </li>
             <li>
-              <!-- Reemplaza por la URL oficial de Instagram -->
-              <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+              <a href="https://www.instagram.com/CUENTA-DEL-NEGOCIO" target="_blank" rel="noopener" aria-label="Instagram">
                 <img src="assets/icons/instagram-3d.webp" width="56" height="56" loading="lazy" alt="">
               </a>
             </li>
+            -->
           </ul>
         </div>
 
@@ -480,8 +500,8 @@
       <div class="footer-hours">
         <svg class="hours-icon" aria-hidden="true"><use href="#i-clock"/></svg>
         <ul class="hours-list" role="list" aria-label="Horario" data-en-aria-label="Hours">
-          <li data-days="1,2,3,4,5" data-en="Mon – Fri · 8:00 a.m. – 5:30 p.m.">Lun – Vie · 8:00 a.m. – 5:30 p.m.</li>
-          <li data-days="6" data-en="Sat · 9:00 a.m. – 2:00 p.m.">Sáb · 9:00 a.m. – 2:00 p.m.</li>
+          <li data-days="1,2,3,4,5" data-en="Mon – Fri · 7:00 a.m. – 5:00 p.m.">Lun – Vie · 7:00 a.m. – 5:00 p.m.</li>
+          <li data-days="6" data-en="Sat · 7:00 a.m. – 4:00 p.m.">Sáb · 7:00 a.m. – 4:00 p.m.</li>
           <li data-days="0" data-en="Sun · Closed">Dom · Cerrado</li>
         </ul>
       </div>
@@ -502,7 +522,7 @@
       </span>
       <span class="call-icon" aria-hidden="true"><svg><use href="#i-phone"/></svg></span>
     </a>
-    <a class="wa-float" href="https://wa.me/19396555329" data-wa="¡Hola First Stop! Quiero información sobre sus servicios." data-wa-en="Hi First Stop! I'd like information about your services." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" data-en-aria-label="Message us on WhatsApp">
+    <a class="wa-float" href="https://wa.me/13322315033" data-wa="¡Hola First Stop! Quiero información sobre sus servicios." data-wa-en="Hi First Stop! I'd like information about your services." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" data-en-aria-label="Message us on WhatsApp">
       <span class="wa-ring" aria-hidden="true"></span>
       <span class="wa-ring wa-ring--2" aria-hidden="true"></span>
       <img src="assets/icons/whatsapp-3d.webp" width="68" height="68" alt="">
