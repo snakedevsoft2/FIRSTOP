@@ -157,9 +157,10 @@
   };
 
   // iPhone con ahorro de batería: el sistema no deja reproducir videos solos. En ese caso se muestra
-  // el mismo video como imagen animada (Safari sí la reproduce); si no se puede, queda la portada.
+  // el mismo video como imagen animada (Safari sí la reproduce); si no se puede, queda la portada
+  // y el video arranca con el primer toque en la página.
   const swapToImage = (v, onReady) => {
-    if (v.dataset.swapped) return;
+    if (v.dataset.swapped || v.dataset.noImg) return;
     v.dataset.swapped = '1';
     const source = v.querySelector('source');
     const src = source ? source.getAttribute('src') : v.getAttribute('src');
@@ -174,7 +175,11 @@
       v.style.display = 'none';
       if (onReady) onReady();
     }, { once: true });
-    img.addEventListener('error', () => img.remove(), { once: true });
+    img.addEventListener('error', () => {
+      img.remove();
+      delete v.dataset.swapped;
+      v.dataset.noImg = '1';
+    }, { once: true });
     img.src = src;
     v.after(img);
   };
@@ -185,44 +190,42 @@
       p.catch((err) => { if (err && err.name === 'NotAllowedError') swapToImage(v, onSwap); });
     }
   };
+  // El video se reproduce siempre, también con "reducir movimiento" (en Windows basta con tener apagados
+  // los "Efectos de animación"; en el celular, "Quitar animaciones" o "Reducir movimiento"). Con ese ajuste
+  // solo se quita el scroll automático a la bienvenida.
   let heroVisible = true;
   if (hero && video) {
-    if (reduceMotion || saveData) {
-      video.removeAttribute('autoplay');
-      video.pause();
-    } else {
-      // Bajar solo si el visitante sigue viendo el video
-      const advance = () => {
-        const stillWatching = hero.getBoundingClientRect().top > -hero.offsetHeight * 0.5;
-        if (nextSection && stillWatching && !document.hidden && !isOpen()) goTo(nextSection);
-      };
-      // Si el video se muestra como imagen animada (no avisa cuando termina), se baja cada 10 s
-      const onHeroSwap = () => window.setInterval(() => { if (heroVisible) advance(); }, 10000);
-      video.addEventListener('ended', () => {
-        advance();
-        // ...y vuelve a empezar: nunca se queda congelado
-        video.currentTime = 0;
-        if (heroVisible) playSafe(video, onHeroSwap);
-      });
-      playSafe(video, onHeroSwap);
+    // Bajar solo si el visitante sigue viendo el video
+    const advance = () => {
+      const stillWatching = hero.getBoundingClientRect().top > -hero.offsetHeight * 0.5;
+      if (!reduceMotion && nextSection && stillWatching && !document.hidden && !isOpen()) goTo(nextSection);
+    };
+    // Si el video se muestra como imagen animada (no avisa cuando termina), se baja cada 10 s
+    const onHeroSwap = () => window.setInterval(() => { if (heroVisible) advance(); }, 10000);
+    video.addEventListener('ended', () => {
+      advance();
+      // ...y vuelve a empezar: nunca se queda congelado
+      video.currentTime = 0;
+      if (heroVisible) playSafe(video, onHeroSwap);
+    });
+    playSafe(video, onHeroSwap);
 
-      // Fuera de pantalla se pausa (ahorra batería); al volver sigue reproduciéndose
-      new IntersectionObserver(([entry]) => {
-        heroVisible = entry.isIntersecting;
-        if (heroVisible) playSafe(video, onHeroSwap); else if (!video.dataset.swapped) video.pause();
-      }, { threshold: 0.1 }).observe(hero);
-    }
+    // Fuera de pantalla se pausa (ahorra batería); al volver sigue reproduciéndose
+    new IntersectionObserver(([entry]) => {
+      heroVisible = entry.isIntersecting;
+      if (heroVisible) playSafe(video, onHeroSwap); else if (!video.dataset.swapped) video.pause();
+    }, { threshold: 0.1 }).observe(hero);
   }
 
   // ---- Videos de cada sección ----
   // Cada escena tiene su propio video corto en bucle (su final se funde con el inicio, así nunca se ve
   // parado). Su portada y el video se descargan al acercarse (no compiten con la carga inicial) y el video
-  // se reproduce mientras se ve; fuera de pantalla se pausa.
-  // Con "reducir movimiento" o ahorro de datos se queda la imagen de portada.
+  // se reproduce mientras se ve; fuera de pantalla se pausa (también con "reducir movimiento").
+  // Con ahorro de datos se queda la imagen de portada.
   const scenes = $$('.scene').filter((s) => $('.scene-video', s));
   const videoOf = (scene) => $('.scene-video', scene);
   const showPoster = (v) => { if (v.dataset.poster && !v.getAttribute('poster')) v.poster = v.dataset.poster; };
-  const playScenes = !reduceMotion && !saveData;
+  const playScenes = !saveData;
   const visibleVideos = new Set();
   if (scenes.length && !('IntersectionObserver' in window)) {
     scenes.forEach((s) => showPoster(videoOf(s)));
@@ -269,13 +272,11 @@
 
   // Si el navegador bloquea la reproducción automática (por ejemplo, con el ahorro de batería
   // del celular), el primer toque en la página pone a andar los videos que se están viendo
-  if (!reduceMotion && !saveData) {
-    const unlock = () => {
-      if (video && heroVisible && video.paused) playSafe(video);
-      visibleVideos.forEach((v) => { if (v.paused) playSafe(v); });
-    };
-    ['touchend', 'click', 'keydown'].forEach((ev) => document.addEventListener(ev, unlock, { passive: true }));
-  }
+  const unlock = () => {
+    if (video && heroVisible && video.paused) playSafe(video);
+    visibleVideos.forEach((v) => { if (v.paused) playSafe(v); });
+  };
+  ['touchend', 'click', 'keydown'].forEach((ev) => document.addEventListener(ev, unlock, { passive: true }));
 
   // ---- Profundidad 3D (computadora): el video de cada escena se mueve más lento que el texto ----
   // En celular el video va completo y quieto, sin este efecto.

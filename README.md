@@ -42,7 +42,7 @@ El logo es el octágono rojo de **1 Stop Laundry**, dibujado en vector (`assets/
 - **Calidad:** están a su resolución real (1280 × 720) y nunca se muestran más grandes que eso, así no se ven pixeleados. Salen de `proceso-completo.mp4` (que no se sube).
 - **Computadora:** los textos van encima del video. Al hacer scroll, el video se mueve más lento que el texto y se inclina un poco, lo que da profundidad 3D.
 - **Celular:** diseño propio. El video va completo, a todo el ancho, y los textos quedan arriba o abajo (nunca encima), sin efecto 3D para que se vea nítido.
-- Con "reducir movimiento" activado, o con ahorro de datos, se queda la imagen de portada.
+- Con "reducir movimiento" activado, los videos se reproducen igual (muchas computadoras y celulares lo tienen activado sin saberlo: en Windows basta con tener apagados los "Efectos de animación"). Solo con ahorro de datos se queda la imagen de portada.
 
 ## Fotos del local (Nosotros)
 
@@ -87,7 +87,7 @@ Los navegadores guardan fotos, íconos y videos por un día (ver `vercel.json`).
 
 ## Hero
 
-El hero es solo el video, que se repite sin parar. Cuando termina, la página baja sola a la bienvenida si el visitante lo está mirando; si ya había bajado por su cuenta, la página no se mueve.
+El hero es solo el video, que se repite sin parar. Cuando termina, la página baja sola a la bienvenida si el visitante lo está mirando; si ya había bajado por su cuenta, la página no se mueve. Con "reducir movimiento" activado el video se reproduce igual, pero la página no baja sola.
 
 ## Versión para celular
 
