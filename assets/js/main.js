@@ -3,7 +3,7 @@
   'use strict';
 
   // ---- Datos del negocio (cámbialos aquí si cambian) ----
-  const WHATSAPP = '13322315033';
+  const WHATSAPP = '19396555329';
   const TIME_ZONE = 'America/Puerto_Rico';
 
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
