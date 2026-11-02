@@ -80,7 +80,7 @@ Los navegadores guardan fotos, íconos y videos por un día (ver `vercel.json`).
 
 | Dato | Dónde se cambia |
 | --- | --- |
-| Teléfono (787-888-1665) | `index.html`, botón flotante de llamar y botón "Llamar" del footer (busca `7878881665` y `787-888-1665`) y `og-image.jpg` |
+| Teléfono (787-888-1666) | `index.html`, botón flotante de llamar y botón "Llamar" del footer (busca `7878881666` y `787-888-1666`) y `og-image.jpg` |
 | WhatsApp (939-655-5329) | `assets/js/main.js` (`WHATSAPP`), `index.html` (busca `19396555329` y `939-655-5329`) y `og-image.jpg` |
 | Horario (Lun – Vie 7:00 a.m. – 5:00 p.m., Sáb 7:00 a.m. – 4:00 p.m., Dom cerrado) | `index.html` (sección Horario y `openingHoursSpecification`) |
 | Facebook e Instagram | `index.html`, en "Canales oficiales". Están escondidos hasta tener las páginas oficiales: pon la URL, quita el comentario y agrégala también en `sameAs` |
@@ -103,7 +103,7 @@ En celular la página funciona como una app:
 ## Menú, idioma y botones flotantes
 
 - Arriba a la izquierda va el logo, sin fondo. Arriba a la derecha, el botón "Menú": al tocarlo, las secciones se despliegan hacia abajo como un acordeón transparente. Se guarda al elegir una sección, al tocar fuera, con Escape o al seguir bajando.
-- Abajo a la derecha están los botones de llamar y WhatsApp. El de llamar muestra solo el teléfono y, al pasar el mouse, se abre con "Llamar 787-888-1665". Al llegar al footer (donde ya están WhatsApp y el teléfono) se esconden, y vuelven al salir.
+- Abajo a la derecha están los botones de llamar y WhatsApp. El de llamar muestra solo el teléfono y, al pasar el mouse, se abre con "Llamar 787-888-1666". Al llegar al footer (donde ya están WhatsApp y el teléfono) se esconden, y vuelven al salir.
 - Los botones usan el azul de la página.
 
 ## Idioma (ES / EN)
