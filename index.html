@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="es-PR">
+
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18529891053"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'AW-18529891053');
   </script>
@@ -13,10 +14,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <!-- Versión en inglés (/en/): se genera desde esta página con "node scripts/version-ingles.js".
        Cada texto en español lleva al lado su traducción (data-en, data-en-html, data-en-content...). -->
-  <title data-en="Laundry &amp; Dry Cleaning in Río Grande, PR | First Stop">Lavandería y Dry Cleaning en Río Grande, PR | First Stop</title>
-  <meta name="description" content="Lavandería, dry cleaning, planchado y sastrería en Río Grande, PR. Recogido y entrega en Luquillo, Fajardo, Canóvanas y el área este. Llama al 787-888-1666."
-        data-en-content="Laundry, dry cleaning, pressing and tailoring in Río Grande, PR. Pickup and delivery in Luquillo, Fajardo, Canóvanas and eastern PR. Call 787-888-1666.">
-  <link rel="canonical" href="https://firstop-sigma.vercel.app/" data-en-href="https://firstop-sigma.vercel.app/en/">
+  <title data-en="Laundry &amp; Dry Cleaning in Río Grande, PR | First Stop">Lavandería y Dry Cleaning en Río Grande, PR
+    | First Stop</title>
+  <meta name="description"
+    content="Lavandería, dry cleaning, planchado y sastrería en Río Grande, PR. Recogido y entrega en Luquillo, Fajardo, Canóvanas y el área este. Llama al 787-888-1666."
+    data-en-content="Laundry, dry cleaning, pressing and tailoring in Río Grande, PR. Pickup and delivery in Luquillo, Fajardo, Canóvanas and eastern PR. Call 787-888-1666.">
+  <link rel="canonical" href="https://www.1stoplaundrypr.com/" data-en-href="https://www.1stoplaundrypr.com/en/">
   <link rel="alternate" hreflang="es" href="https://firstop-sigma.vercel.app/">
   <link rel="alternate" hreflang="en" href="https://firstop-sigma.vercel.app/en/">
   <link rel="alternate" hreflang="x-default" href="https://firstop-sigma.vercel.app/">
@@ -41,17 +44,26 @@
   <meta property="og:locale" content="es_PR" data-en-content="en_US">
   <meta property="og:locale:alternate" content="en_US" data-en-content="es_PR">
   <meta property="og:site_name" content="First Stop Laundry &amp; Sastrería">
-  <meta property="og:title" content="Lavandería y Dry Cleaning en Río Grande, Puerto Rico" data-en-content="Laundry &amp; Dry Cleaning in Río Grande, Puerto Rico">
-  <meta property="og:description" content="Lavado, dry cleaning, planchado y sastrería con recogido y entrega en el área este de Puerto Rico." data-en-content="Washing, dry cleaning, pressing and tailoring with pickup and delivery in eastern Puerto Rico.">
-  <meta property="og:url" content="https://firstop-sigma.vercel.app/" data-en-content="https://firstop-sigma.vercel.app/en/">
+  <meta property="og:title" content="Lavandería y Dry Cleaning en Río Grande, Puerto Rico"
+    data-en-content="Laundry &amp; Dry Cleaning in Río Grande, Puerto Rico">
+  <meta property="og:description"
+    content="Lavado, dry cleaning, planchado y sastrería con recogido y entrega en el área este de Puerto Rico."
+    data-en-content="Washing, dry cleaning, pressing and tailoring with pickup and delivery in eastern Puerto Rico.">
+  <meta property="og:url" content="https://www.1stoplaundrypr.com/"
+    data-en-content="https://www.1stoplaundrypr.com/en/">
   <!-- "?v=" obliga a WhatsApp y Facebook a mostrar la imagen nueva: cámbialo cada vez que cambies og-image.jpg -->
   <meta property="og:image" content="https://firstop-sigma.vercel.app/assets/images/og-image.jpg?v=20261102">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="First Stop Laundry &amp; Sastrería – Lavandería y Dry Cleaning en Río Grande, Puerto Rico" data-en-content="First Stop Laundry &amp; Sastrería – Laundry &amp; Dry Cleaning in Río Grande, Puerto Rico">
+  <meta property="og:image:alt"
+    content="First Stop Laundry &amp; Sastrería – Lavandería y Dry Cleaning en Río Grande, Puerto Rico"
+    data-en-content="First Stop Laundry &amp; Sastrería – Laundry &amp; Dry Cleaning in Río Grande, Puerto Rico">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Lavandería y Dry Cleaning en Río Grande, Puerto Rico" data-en-content="Laundry &amp; Dry Cleaning in Río Grande, Puerto Rico">
-  <meta name="twitter:description" content="Lavado, dry cleaning, planchado y sastrería con recogido y entrega en el área este de Puerto Rico." data-en-content="Washing, dry cleaning, pressing and tailoring with pickup and delivery in eastern Puerto Rico.">
+  <meta name="twitter:title" content="Lavandería y Dry Cleaning en Río Grande, Puerto Rico"
+    data-en-content="Laundry &amp; Dry Cleaning in Río Grande, Puerto Rico">
+  <meta name="twitter:description"
+    content="Lavado, dry cleaning, planchado y sastrería con recogido y entrega en el área este de Puerto Rico."
+    data-en-content="Washing, dry cleaning, pressing and tailoring with pickup and delivery in eastern Puerto Rico.">
   <meta name="twitter:image" content="https://firstop-sigma.vercel.app/assets/images/og-image.jpg?v=20261102">
 
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
@@ -169,29 +181,91 @@
     ]
   }
   </script>
+
+  <script>
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (!a || typeof gtag !== 'function') return;
+      var href = a.getAttribute('href') || '';
+      // Clic en cualquier boton de WhatsApp
+      if (/wa\.me|api\.whatsapp\.com/i.test(href)) {
+        gtag('event', 'conversion', { 'send_to': 'AW-18529891053/euPfCMzR97AdEO3l3oNF' });
+      }
+      // Clic en "Llamar" (enlaces tel:)
+      if (/^tel:/i.test(href)) {
+        gtag('event', 'conversion', { 'send_to': 'AW-18529891053/gBWvCJnU97AdEO3l3oNF' });
+      }
+    }, true);
+  </script>
+
 </head>
+
 <body>
   <!-- logo:start -->
   <!-- Logo "1 Stop Laundry" en vector (se ve nítido en cualquier tamaño). Archivo: assets/logo/logo.svg -->
   <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
     <symbol id="logo" viewBox="0 0 1200 1200">
-      <polygon points="351.5,0 848.5,0 1200,351.5 1200,848.5 848.5,1200 404,1200 404,1000 212,1000 212,1060.5 0,848.5 0,351.5" fill="#FF0000"/>
-      <polygon points="362.2,26 837.8,26 1174,362.2 1174,837.8 837.8,1174 362.2,1174 26,837.8 26,362.2" fill="none" stroke="#fff" stroke-width="13"/>
-      <path d="M272 238H404V1200H351.5L212 1060.5V506H62V378C184 378 254 336 272 238Z" fill="#fff"/>
-      <path d="M502.6 621.5Q469.5 621.5 452.5 604.9Q435.5 588.4 435.5 557.5L435.5 557.5L435.5 542.9L478.6 542.9L478.6 560.4Q478.6 585.1 502.2 585.1L502.2 585.1Q513.8 585.1 519.8 579.1Q525.8 573.1 525.8 559.6L525.8 559.6Q525.8 543.6 517.5 531.4Q509.3 519.2 486.9 502.1L486.9 502.1Q458.7 480.3 447.5 462.7Q436.3 445 436.3 422.8L436.3 422.8Q436.3 392.6 453.7 376.1Q471.1 359.5 504.3 359.5L504.3 359.5Q537 359.5 553.8 376.1Q570.6 392.6 570.6 423.5L570.6 423.5L570.6 434.1L527.5 434.1L527.5 421Q527.5 407.9 521.7 401.9Q515.9 395.9 504.7 395.9L504.7 395.9Q481.9 395.9 481.9 420.3L481.9 420.3Q481.9 434.1 490.4 446.1Q498.9 458.1 521.3 475.2L521.3 475.2Q549.9 497.1 560.6 514.9Q571.4 532.7 571.4 556.7L571.4 556.7Q571.4 588 553.8 604.8Q536.2 621.5 502.6 621.5L502.6 621.5ZM651.8 617.9L651.8 399.5L604.2 399.5L604.2 363.1L745.1 363.1L745.1 399.5L697.4 399.5L697.4 617.9L651.8 617.9ZM849.9 621.5Q816.3 621.5 798.5 604.8Q780.7 588 780.7 557.5L780.7 557.5L780.7 423.5Q780.7 393 798.5 376.2Q816.3 359.5 849.9 359.5L849.9 359.5Q883.5 359.5 901.3 376.2Q919.1 393 919.1 423.5L919.1 423.5L919.1 557.5Q919.1 588 901.3 604.8Q883.5 621.5 849.9 621.5L849.9 621.5ZM849.9 585.1Q873.5 585.1 873.5 560L873.5 560L873.5 421Q873.5 395.9 849.9 395.9L849.9 395.9Q826.3 395.9 826.3 421L826.3 421L826.3 560Q826.3 585.1 849.9 585.1L849.9 585.1ZM968.4 617.9L968.4 363.1L1035.5 363.1Q1069.5 363.1 1086.5 379.2Q1103.5 395.2 1103.5 426.1L1103.5 426.1L1103.5 451.2Q1103.5 482.1 1086.5 498.1Q1069.5 514.2 1035.5 514.2L1035.5 514.2L1014 514.2L1014 617.9L968.4 617.9ZM1014 477.8L1035.5 477.8Q1046.7 477.8 1052.3 472.3Q1057.9 466.8 1057.9 453.7L1057.9 453.7L1057.9 423.5Q1057.9 410.4 1052.3 405Q1046.7 399.5 1035.5 399.5L1035.5 399.5L1014 399.5L1014 477.8Z" fill="#fff" stroke="#fff" stroke-width="11" stroke-linejoin="round"/>
-      <path d="M433.5 837.3L433.5 681.5L458.9 681.5L458.9 815L500.6 815L500.6 837.3L433.5 837.3ZM514 837.3L540.2 681.5L574.6 681.5L600.9 837.3L575.5 837.3L570.9 806.3L570.9 806.8L542.1 806.8L537.5 837.3L514 837.3ZM545.1 785.6L567.9 785.6L556.6 708.6L556.2 708.6L545.1 785.6ZM656.4 839.5Q638 839.5 628.3 829.4Q618.6 819.2 618.6 800.3L618.6 800.3L618.6 681.5L644 681.5L644 802.1Q644 810.1 647.3 813.7Q650.7 817.2 656.9 817.2L656.9 817.2Q663.1 817.2 666.5 813.7Q669.8 810.1 669.8 802.1L669.8 802.1L669.8 681.5L694.3 681.5L694.3 800.3Q694.3 819.2 684.6 829.4Q674.9 839.5 656.4 839.5L656.4 839.5ZM719.2 837.3L719.2 681.5L751 681.5L775.6 774.7L776.1 774.7L776.1 681.5L798.7 681.5L798.7 837.3L772.6 837.3L742.2 723.6L741.8 723.6L741.8 837.3L719.2 837.3ZM824.5 837.3L824.5 681.5L863.3 681.5Q882.2 681.5 891.6 691.3Q901.1 701.1 901.1 720L901.1 720L901.1 798.8Q901.1 817.7 891.6 827.5Q882.2 837.3 863.3 837.3L863.3 837.3L824.5 837.3ZM849.9 815L862.8 815Q869 815 872.4 811.5Q875.7 807.9 875.7 799.9L875.7 799.9L875.7 718.9Q875.7 710.9 872.4 707.3Q869 703.8 862.8 703.8L862.8 703.8L849.9 703.8L849.9 815ZM925 837.3L925 681.5L962.6 681.5Q982.2 681.5 991.2 690.3Q1000.2 699.1 1000.2 717.3L1000.2 717.3L1000.2 726.9Q1000.2 751.2 983.6 757.6L983.6 757.6L983.6 758.1Q992.8 760.7 996.6 769Q1000.4 777.2 1000.4 791L1000.4 791L1000.4 818.4Q1000.4 825 1000.9 829.2Q1001.4 833.3 1003.2 837.3L1003.2 837.3L977.4 837.3Q976 833.5 975.5 830.2Q975.1 826.8 975.1 818.1L975.1 818.1L975.1 789.7Q975.1 779 971.5 774.7Q967.9 770.5 959.2 770.5L959.2 770.5L950.4 770.5L950.4 837.3L925 837.3ZM950.4 748.3L959.6 748.3Q967.2 748.3 971 744.5Q974.8 740.7 974.8 731.8L974.8 731.8L974.8 719.8Q974.8 711.3 971.7 707.5Q968.6 703.8 961.9 703.8L961.9 703.8L950.4 703.8L950.4 748.3ZM1044.5 837.3L1044.5 771L1013.8 681.5L1040.8 681.5L1058.1 738.7L1058.5 738.7L1075.8 681.5L1100.5 681.5L1069.8 771L1069.8 837.3L1044.5 837.3Z" fill="#fff" stroke="#fff" stroke-width="7" stroke-linejoin="round"/>
+      <polygon
+        points="351.5,0 848.5,0 1200,351.5 1200,848.5 848.5,1200 404,1200 404,1000 212,1000 212,1060.5 0,848.5 0,351.5"
+        fill="#FF0000" />
+      <polygon points="362.2,26 837.8,26 1174,362.2 1174,837.8 837.8,1174 362.2,1174 26,837.8 26,362.2" fill="none"
+        stroke="#fff" stroke-width="13" />
+      <path d="M272 238H404V1200H351.5L212 1060.5V506H62V378C184 378 254 336 272 238Z" fill="#fff" />
+      <path
+        d="M502.6 621.5Q469.5 621.5 452.5 604.9Q435.5 588.4 435.5 557.5L435.5 557.5L435.5 542.9L478.6 542.9L478.6 560.4Q478.6 585.1 502.2 585.1L502.2 585.1Q513.8 585.1 519.8 579.1Q525.8 573.1 525.8 559.6L525.8 559.6Q525.8 543.6 517.5 531.4Q509.3 519.2 486.9 502.1L486.9 502.1Q458.7 480.3 447.5 462.7Q436.3 445 436.3 422.8L436.3 422.8Q436.3 392.6 453.7 376.1Q471.1 359.5 504.3 359.5L504.3 359.5Q537 359.5 553.8 376.1Q570.6 392.6 570.6 423.5L570.6 423.5L570.6 434.1L527.5 434.1L527.5 421Q527.5 407.9 521.7 401.9Q515.9 395.9 504.7 395.9L504.7 395.9Q481.9 395.9 481.9 420.3L481.9 420.3Q481.9 434.1 490.4 446.1Q498.9 458.1 521.3 475.2L521.3 475.2Q549.9 497.1 560.6 514.9Q571.4 532.7 571.4 556.7L571.4 556.7Q571.4 588 553.8 604.8Q536.2 621.5 502.6 621.5L502.6 621.5ZM651.8 617.9L651.8 399.5L604.2 399.5L604.2 363.1L745.1 363.1L745.1 399.5L697.4 399.5L697.4 617.9L651.8 617.9ZM849.9 621.5Q816.3 621.5 798.5 604.8Q780.7 588 780.7 557.5L780.7 557.5L780.7 423.5Q780.7 393 798.5 376.2Q816.3 359.5 849.9 359.5L849.9 359.5Q883.5 359.5 901.3 376.2Q919.1 393 919.1 423.5L919.1 423.5L919.1 557.5Q919.1 588 901.3 604.8Q883.5 621.5 849.9 621.5L849.9 621.5ZM849.9 585.1Q873.5 585.1 873.5 560L873.5 560L873.5 421Q873.5 395.9 849.9 395.9L849.9 395.9Q826.3 395.9 826.3 421L826.3 421L826.3 560Q826.3 585.1 849.9 585.1L849.9 585.1ZM968.4 617.9L968.4 363.1L1035.5 363.1Q1069.5 363.1 1086.5 379.2Q1103.5 395.2 1103.5 426.1L1103.5 426.1L1103.5 451.2Q1103.5 482.1 1086.5 498.1Q1069.5 514.2 1035.5 514.2L1035.5 514.2L1014 514.2L1014 617.9L968.4 617.9ZM1014 477.8L1035.5 477.8Q1046.7 477.8 1052.3 472.3Q1057.9 466.8 1057.9 453.7L1057.9 453.7L1057.9 423.5Q1057.9 410.4 1052.3 405Q1046.7 399.5 1035.5 399.5L1035.5 399.5L1014 399.5L1014 477.8Z"
+        fill="#fff" stroke="#fff" stroke-width="11" stroke-linejoin="round" />
+      <path
+        d="M433.5 837.3L433.5 681.5L458.9 681.5L458.9 815L500.6 815L500.6 837.3L433.5 837.3ZM514 837.3L540.2 681.5L574.6 681.5L600.9 837.3L575.5 837.3L570.9 806.3L570.9 806.8L542.1 806.8L537.5 837.3L514 837.3ZM545.1 785.6L567.9 785.6L556.6 708.6L556.2 708.6L545.1 785.6ZM656.4 839.5Q638 839.5 628.3 829.4Q618.6 819.2 618.6 800.3L618.6 800.3L618.6 681.5L644 681.5L644 802.1Q644 810.1 647.3 813.7Q650.7 817.2 656.9 817.2L656.9 817.2Q663.1 817.2 666.5 813.7Q669.8 810.1 669.8 802.1L669.8 802.1L669.8 681.5L694.3 681.5L694.3 800.3Q694.3 819.2 684.6 829.4Q674.9 839.5 656.4 839.5L656.4 839.5ZM719.2 837.3L719.2 681.5L751 681.5L775.6 774.7L776.1 774.7L776.1 681.5L798.7 681.5L798.7 837.3L772.6 837.3L742.2 723.6L741.8 723.6L741.8 837.3L719.2 837.3ZM824.5 837.3L824.5 681.5L863.3 681.5Q882.2 681.5 891.6 691.3Q901.1 701.1 901.1 720L901.1 720L901.1 798.8Q901.1 817.7 891.6 827.5Q882.2 837.3 863.3 837.3L863.3 837.3L824.5 837.3ZM849.9 815L862.8 815Q869 815 872.4 811.5Q875.7 807.9 875.7 799.9L875.7 799.9L875.7 718.9Q875.7 710.9 872.4 707.3Q869 703.8 862.8 703.8L862.8 703.8L849.9 703.8L849.9 815ZM925 837.3L925 681.5L962.6 681.5Q982.2 681.5 991.2 690.3Q1000.2 699.1 1000.2 717.3L1000.2 717.3L1000.2 726.9Q1000.2 751.2 983.6 757.6L983.6 757.6L983.6 758.1Q992.8 760.7 996.6 769Q1000.4 777.2 1000.4 791L1000.4 791L1000.4 818.4Q1000.4 825 1000.9 829.2Q1001.4 833.3 1003.2 837.3L1003.2 837.3L977.4 837.3Q976 833.5 975.5 830.2Q975.1 826.8 975.1 818.1L975.1 818.1L975.1 789.7Q975.1 779 971.5 774.7Q967.9 770.5 959.2 770.5L959.2 770.5L950.4 770.5L950.4 837.3L925 837.3ZM950.4 748.3L959.6 748.3Q967.2 748.3 971 744.5Q974.8 740.7 974.8 731.8L974.8 731.8L974.8 719.8Q974.8 711.3 971.7 707.5Q968.6 703.8 961.9 703.8L961.9 703.8L950.4 703.8L950.4 748.3ZM1044.5 837.3L1044.5 771L1013.8 681.5L1040.8 681.5L1058.1 738.7L1058.5 738.7L1075.8 681.5L1100.5 681.5L1069.8 771L1069.8 837.3L1044.5 837.3Z"
+        fill="#fff" stroke="#fff" stroke-width="7" stroke-linejoin="round" />
     </symbol>
   </svg>
   <!-- logo:end -->
   <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-    <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></symbol>
-    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.28-.2-.57-.35m-5.42 7.4h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41Z"/></symbol>
-    <symbol id="i-truck" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2M15 18H9M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></g></symbol>
-    <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></g></symbol>
-    <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></g></symbol>
-    <symbol id="i-timer" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2h4M12 14l3-3"/><circle cx="12" cy="14" r="8"/></g></symbol>
-    <symbol id="i-layers" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65M22 12.65l-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></g></symbol>
-    <symbol id="i-heart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
+    </symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24">
+      <path fill="currentColor"
+        d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.28-.2-.57-.35m-5.42 7.4h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41Z" />
+    </symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path
+          d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2M15 18H9M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
+        <circle cx="17" cy="18" r="2" />
+        <circle cx="7" cy="18" r="2" />
+      </g>
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 6v6l4 2" />
+      </g>
+    </symbol>
+    <symbol id="i-search" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8" />
+        <path d="m21 21-4.3-4.3M8 11h6M11 8v6" />
+      </g>
+    </symbol>
+    <symbol id="i-timer" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 2h4M12 14l3-3" />
+        <circle cx="12" cy="14" r="8" />
+      </g>
+    </symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path
+          d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" />
+        <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65M22 12.65l-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" />
+      </g>
+    </symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+    </symbol>
   </svg>
 
   <a class="skip-link" href="#main" data-en="Skip to content">Saltar al contenido</a>
@@ -199,7 +273,9 @@
   <!-- ============ HEADER: logo y menú flotante (se abre y se guarda) ============ -->
   <header class="site-header" id="site-header">
     <a class="brand" href="#inicio" aria-label="1 Stop Laundry – Inicio" data-en-aria-label="1 Stop Laundry – Home">
-      <svg class="logo" viewBox="0 0 1200 1200" aria-hidden="true" focusable="false"><use href="#logo"/></svg>
+      <svg class="logo" viewBox="0 0 1200 1200" aria-hidden="true" focusable="false">
+        <use href="#logo" />
+      </svg>
     </a>
 
     <div class="menu-wrap">
@@ -230,17 +306,21 @@
 
   <main id="main">
     <!-- ============ HERO: solo el video. Al terminar, la página baja a la bienvenida. ============ -->
-    <section class="hero" id="inicio" aria-label="Video de First Stop Laundry &amp; Sastrería" data-en-aria-label="First Stop Laundry &amp; Sastrería video">
-      <video class="hero-video" autoplay muted playsinline preload="auto" disablepictureinpicture disableremoteplayback poster="assets/images/hero-poster.webp" aria-hidden="true">
+    <section class="hero" id="inicio" aria-label="Video de First Stop Laundry &amp; Sastrería"
+      data-en-aria-label="First Stop Laundry &amp; Sastrería video">
+      <video class="hero-video" autoplay muted playsinline preload="auto" disablepictureinpicture disableremoteplayback
+        poster="assets/images/hero-poster.webp" aria-hidden="true">
         <source src="assets/videos/hero.mp4" type="video/mp4">
       </video>
-      <a class="hero-cue" href="#bienvenida" aria-label="Bajar a la bienvenida" data-en-aria-label="Scroll to the welcome section"><span aria-hidden="true"></span></a>
+      <a class="hero-cue" href="#bienvenida" aria-label="Bajar a la bienvenida"
+        data-en-aria-label="Scroll to the welcome section"><span aria-hidden="true"></span></a>
     </section>
 
     <!-- ============ BIENVENIDA (las letras grandes) ============ -->
     <section class="section intro scene" id="bienvenida" aria-labelledby="intro-title">
       <div class="scene-bg scene-bg--white" aria-hidden="true">
-        <video class="scene-video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback data-poster="assets/images/proceso/ropa-cae.webp">
+        <video class="scene-video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback
+          data-poster="assets/images/proceso/ropa-cae.webp">
           <source src="assets/videos/proceso/ropa-cae.mp4" type="video/mp4">
         </video>
       </div>
@@ -250,8 +330,13 @@
           <span class="line"><span>dry cleaning</span></span>
           <span class="line"><span class="accent" data-en="in Río Grande">en Río Grande</span></span>
         </h1>
-        <p class="intro-text reveal" style="--i:3" data-en="Washing, pressing and tailoring with home pickup and delivery in eastern Puerto Rico.">Lavado, planchado y sastrería con recogido y entrega a domicilio en el este de Puerto Rico.</p>
-        <a class="btn btn-brand btn-lg intro-cta reveal" style="--i:4" href="https://wa.me/19396555329" data-wa="¡Hola First Stop! Quiero coordinar un recogido." data-wa-en="Hi First Stop! I'd like to schedule a pickup." target="_blank" rel="noopener" data-en="Request pickup">Solicitar recogido</a>
+        <p class="intro-text reveal" style="--i:3"
+          data-en="Washing, pressing and tailoring with home pickup and delivery in eastern Puerto Rico.">Lavado,
+          planchado y sastrería con recogido y entrega a domicilio en el este de Puerto Rico.</p>
+        <a class="btn btn-brand btn-lg intro-cta reveal" style="--i:4" href="https://wa.me/19396555329"
+          data-wa="¡Hola First Stop! Quiero coordinar un recogido."
+          data-wa-en="Hi First Stop! I'd like to schedule a pickup." target="_blank" rel="noopener"
+          data-en="Request pickup">Solicitar recogido</a>
       </div>
     </section>
 
@@ -260,18 +345,26 @@
       <div class="container">
 
         <header class="section-head reveal">
-          <h2 class="section-title" id="about-title" data-en-html='We care for your clothes <span class="hl">as if they were ours</span>'>Cuidamos tu ropa <span class="hl">como si fuera nuestra</span></h2>
-          <p class="section-lead" data-en="A local, family-run business on Route 3 in Río Grande, with parking and ramp access.">Un negocio local y familiar en la Carr. 3 de Río Grande, con estacionamiento y rampa de acceso.</p>
+          <h2 class="section-title" id="about-title"
+            data-en-html='We care for your clothes <span class="hl">as if they were ours</span>'>Cuidamos tu ropa <span
+              class="hl">como si fuera nuestra</span></h2>
+          <p class="section-lead"
+            data-en="A local, family-run business on Route 3 in Río Grande, with parking and ramp access.">Un negocio
+            local y familiar en la Carr. 3 de Río Grande, con estacionamiento y rampa de acceso.</p>
         </header>
 
         <div class="about-grid">
           <ul class="about-features" role="list">
             <li class="feature reveal" data-reveal="left" style="--i:1">
-              <span class="feature-icon"><svg aria-hidden="true"><use href="#i-search"/></svg></span>
+              <span class="feature-icon"><svg aria-hidden="true">
+                  <use href="#i-search" />
+                </svg></span>
               <span data-en="Attention to detail">Atención al detalle</span>
             </li>
             <li class="feature reveal" data-reveal="left" style="--i:2">
-              <span class="feature-icon"><svg aria-hidden="true"><use href="#i-timer"/></svg></span>
+              <span class="feature-icon"><svg aria-hidden="true">
+                  <use href="#i-timer" />
+                </svg></span>
               <span data-en="On-time delivery">Entrega puntual</span>
             </li>
           </ul>
@@ -280,30 +373,40 @@
                Para cambiarlas, reemplaza los archivos en assets/images/local/ con el mismo nombre. -->
           <figure class="about-media local-gallery reveal" data-reveal="zoom">
             <div class="local-slides">
-              <img class="local-slide is-active" src="assets/images/local/1-stop-laundry-rio-grande-fachada.webp" width="1080" height="810" loading="lazy" decoding="async"
-                   alt="Fachada de 1 Stop Laundry con su letrero y la rampa de entrada, en la Carr. 3 km 26.5 de Río Grande, Puerto Rico"
-                   data-en-alt="1 Stop Laundry storefront with its sign and entrance ramp, at Route 3, km 26.5, Río Grande, Puerto Rico">
-              <img class="local-slide" src="assets/images/local/1-stop-laundry-rio-grande-entrada.webp" width="1080" height="810" loading="lazy" decoding="async"
-                   alt="Entrada de la lavandería con el letrero de abierto, laundry y sastrería, y el teléfono 888-1665"
-                   data-en-alt="Laundry entrance with the open, laundry and tailoring sign, and the phone number 888-1665">
-              <img class="local-slide" src="assets/images/local/1-stop-laundry-rio-grande-estacionamiento.webp" width="1080" height="810" loading="lazy" decoding="async"
-                   alt="Estacionamiento frente a 1 Stop Laundry en Río Grande, Puerto Rico"
-                   data-en-alt="Parking in front of 1 Stop Laundry in Río Grande, Puerto Rico">
+              <img class="local-slide is-active" src="assets/images/local/1-stop-laundry-rio-grande-fachada.webp"
+                width="1080" height="810" loading="lazy" decoding="async"
+                alt="Fachada de 1 Stop Laundry con su letrero y la rampa de entrada, en la Carr. 3 km 26.5 de Río Grande, Puerto Rico"
+                data-en-alt="1 Stop Laundry storefront with its sign and entrance ramp, at Route 3, km 26.5, Río Grande, Puerto Rico">
+              <img class="local-slide" src="assets/images/local/1-stop-laundry-rio-grande-entrada.webp" width="1080"
+                height="810" loading="lazy" decoding="async"
+                alt="Entrada de la lavandería con el letrero de abierto, laundry y sastrería, y el teléfono 888-1665"
+                data-en-alt="Laundry entrance with the open, laundry and tailoring sign, and the phone number 888-1665">
+              <img class="local-slide" src="assets/images/local/1-stop-laundry-rio-grande-estacionamiento.webp"
+                width="1080" height="810" loading="lazy" decoding="async"
+                alt="Estacionamiento frente a 1 Stop Laundry en Río Grande, Puerto Rico"
+                data-en-alt="Parking in front of 1 Stop Laundry in Río Grande, Puerto Rico">
             </div>
             <div class="local-dots" role="group" aria-label="Fotos del local" data-en-aria-label="Photos of the store">
-              <button type="button" class="local-dot" aria-pressed="true" aria-label="Foto 1: fachada" data-en-aria-label="Photo 1: storefront"></button>
-              <button type="button" class="local-dot" aria-pressed="false" aria-label="Foto 2: entrada" data-en-aria-label="Photo 2: entrance"></button>
-              <button type="button" class="local-dot" aria-pressed="false" aria-label="Foto 3: estacionamiento" data-en-aria-label="Photo 3: parking"></button>
+              <button type="button" class="local-dot" aria-pressed="true" aria-label="Foto 1: fachada"
+                data-en-aria-label="Photo 1: storefront"></button>
+              <button type="button" class="local-dot" aria-pressed="false" aria-label="Foto 2: entrada"
+                data-en-aria-label="Photo 2: entrance"></button>
+              <button type="button" class="local-dot" aria-pressed="false" aria-label="Foto 3: estacionamiento"
+                data-en-aria-label="Photo 3: parking"></button>
             </div>
           </figure>
 
           <ul class="about-features" role="list">
             <li class="feature reveal" data-reveal="right" style="--i:1">
-              <span class="feature-icon"><svg aria-hidden="true"><use href="#i-layers"/></svg></span>
+              <span class="feature-icon"><svg aria-hidden="true">
+                  <use href="#i-layers" />
+                </svg></span>
               <span data-en="Fabric experts">Expertos en telas</span>
             </li>
             <li class="feature reveal" data-reveal="right" style="--i:2">
-              <span class="feature-icon"><svg aria-hidden="true"><use href="#i-heart"/></svg></span>
+              <span class="feature-icon"><svg aria-hidden="true">
+                  <use href="#i-heart" />
+                </svg></span>
               <span data-en="Friendly service">Trato familiar</span>
             </li>
           </ul>
@@ -316,12 +419,14 @@
       <div class="container">
         <div class="scene scene--head">
           <div class="scene-bg scene-bg--white" aria-hidden="true">
-            <video class="scene-video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback data-poster="assets/images/proceso/ropa-recogida.webp">
+            <video class="scene-video" muted loop playsinline preload="none" disablepictureinpicture
+              disableremoteplayback data-poster="assets/images/proceso/ropa-recogida.webp">
               <source src="assets/videos/proceso/ropa-recogida.mp4" type="video/mp4">
             </video>
           </div>
           <header class="section-head reveal">
-            <h2 class="section-title" id="services-title" data-en-html='Our <span class="hl">services</span>'>Nuestros <span class="hl">servicios</span></h2>
+            <h2 class="section-title" id="services-title" data-en-html='Our <span class="hl">services</span>'>Nuestros
+              <span class="hl">servicios</span></h2>
           </header>
         </div>
 
@@ -330,80 +435,125 @@
           <li class="reveal" style="--i:0">
             <article class="service-card">
               <div class="service-media">
-                <img src="assets/images/servicios/lavado-y-doblado.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Persona doblando toallas limpias: lavado y doblado en Río Grande, Puerto Rico" data-en-alt="Person folding clean towels: wash and fold in Río Grande, Puerto Rico">
+                <img src="assets/images/servicios/lavado-y-doblado.jpg" width="800" height="600" loading="lazy"
+                  decoding="async" alt="Persona doblando toallas limpias: lavado y doblado en Río Grande, Puerto Rico"
+                  data-en-alt="Person folding clean towels: wash and fold in Río Grande, Puerto Rico">
               </div>
               <div class="service-body">
                 <h3 data-en="Wash &amp; fold">Lavado y doblado</h3>
                 <p data-en="Everyday clothes, washed and folded.">Ropa del diario, lavada y doblada.</p>
-                <a class="service-link" href="https://wa.me/19396555329" data-wa="¡Hola! Quiero cotizar el servicio de lavado y doblado." data-wa-en="Hi! I'd like a quote for wash and fold." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg><span data-en="Get a quote">Cotizar</span></a>
+                <a class="service-link" href="https://wa.me/19396555329"
+                  data-wa="¡Hola! Quiero cotizar el servicio de lavado y doblado."
+                  data-wa-en="Hi! I'd like a quote for wash and fold." target="_blank" rel="noopener"><svg
+                    aria-hidden="true">
+                    <use href="#i-whatsapp" />
+                  </svg><span data-en="Get a quote">Cotizar</span></a>
               </div>
             </article>
           </li>
           <li class="reveal" style="--i:1">
             <article class="service-card">
               <div class="service-media">
-                <img src="assets/images/servicios/dry-cleaning-planchado.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Camisas con dry cleaning y planchado, colgadas en ganchos con plástico" data-en-alt="Dry-cleaned, pressed shirts on hangers with plastic covers">
+                <img src="assets/images/servicios/dry-cleaning-planchado.jpg" width="800" height="600" loading="lazy"
+                  decoding="async" alt="Camisas con dry cleaning y planchado, colgadas en ganchos con plástico"
+                  data-en-alt="Dry-cleaned, pressed shirts on hangers with plastic covers">
               </div>
               <div class="service-body">
                 <h3 data-en="Dry cleaning &amp; pressing">Dry cleaning y planchado</h3>
                 <p data-en="Spotless suits, dresses and shirts.">Trajes, vestidos y camisas impecables.</p>
-                <a class="service-link" href="https://wa.me/19396555329" data-wa="¡Hola! Quiero cotizar dry cleaning y planchado." data-wa-en="Hi! I'd like a quote for dry cleaning and pressing." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg><span data-en="Get a quote">Cotizar</span></a>
+                <a class="service-link" href="https://wa.me/19396555329"
+                  data-wa="¡Hola! Quiero cotizar dry cleaning y planchado."
+                  data-wa-en="Hi! I'd like a quote for dry cleaning and pressing." target="_blank" rel="noopener"><svg
+                    aria-hidden="true">
+                    <use href="#i-whatsapp" />
+                  </svg><span data-en="Get a quote">Cotizar</span></a>
               </div>
             </article>
           </li>
           <li class="reveal" style="--i:2">
             <article class="service-card">
               <div class="service-media">
-                <img src="assets/images/servicios/sastreria-alteraciones.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Sastre ajustando una camisa: sastrería y alteraciones en Río Grande" data-en-alt="Tailor fitting a shirt: tailoring and alterations in Río Grande">
+                <img src="assets/images/servicios/sastreria-alteraciones.jpg" width="800" height="600" loading="lazy"
+                  decoding="async" alt="Sastre ajustando una camisa: sastrería y alteraciones en Río Grande"
+                  data-en-alt="Tailor fitting a shirt: tailoring and alterations in Río Grande">
               </div>
               <div class="service-body">
                 <h3 data-en="Tailoring &amp; alterations">Sastrería y alteraciones</h3>
                 <p data-en="Hems, zippers and custom fittings.">Ruedos, zippers y ajustes a tu medida.</p>
-                <a class="service-link" href="https://wa.me/19396555329" data-wa="¡Hola! Necesito un arreglo de sastrería." data-wa-en="Hi! I need a tailoring alteration." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg><span data-en="Get a quote">Cotizar</span></a>
+                <a class="service-link" href="https://wa.me/19396555329"
+                  data-wa="¡Hola! Necesito un arreglo de sastrería." data-wa-en="Hi! I need a tailoring alteration."
+                  target="_blank" rel="noopener"><svg aria-hidden="true">
+                    <use href="#i-whatsapp" />
+                  </svg><span data-en="Get a quote">Cotizar</span></a>
               </div>
             </article>
           </li>
           <li class="reveal" style="--i:3">
             <article class="service-card">
               <div class="service-media">
-                <img src="assets/images/servicios/comforters-ropa-de-cama.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Lavadora con sábanas y ropa de cama" data-en-alt="Washing machine with sheets and bedding">
+                <img src="assets/images/servicios/comforters-ropa-de-cama.jpg" width="800" height="600" loading="lazy"
+                  decoding="async" alt="Lavadora con sábanas y ropa de cama"
+                  data-en-alt="Washing machine with sheets and bedding">
               </div>
               <div class="service-body">
                 <h3 data-en="Comforters &amp; bedding">Comforters y ropa de cama</h3>
                 <p data-en="Fresh comforters and sheets.">Comforters y sábanas frescos.</p>
-                <a class="service-link" href="https://wa.me/19396555329" data-wa="¡Hola! Quiero lavar comforters y ropa de cama." data-wa-en="Hi! I'd like to wash comforters and bedding." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg><span data-en="Get a quote">Cotizar</span></a>
+                <a class="service-link" href="https://wa.me/19396555329"
+                  data-wa="¡Hola! Quiero lavar comforters y ropa de cama."
+                  data-wa-en="Hi! I'd like to wash comforters and bedding." target="_blank" rel="noopener"><svg
+                    aria-hidden="true">
+                    <use href="#i-whatsapp" />
+                  </svg><span data-en="Get a quote">Cotizar</span></a>
               </div>
             </article>
           </li>
           <li class="reveal" style="--i:4">
             <article class="service-card">
               <div class="service-media">
-                <img src="assets/images/servicios/hoteles-y-airbnb.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Sábanas, almohadas y toallas limpias para hoteles y Airbnbs en Puerto Rico" data-en-alt="Clean sheets, pillows and towels for hotels and Airbnbs in Puerto Rico">
+                <img src="assets/images/servicios/hoteles-y-airbnb.jpg" width="800" height="600" loading="lazy"
+                  decoding="async" alt="Sábanas, almohadas y toallas limpias para hoteles y Airbnbs en Puerto Rico"
+                  data-en-alt="Clean sheets, pillows and towels for hotels and Airbnbs in Puerto Rico">
               </div>
               <div class="service-body">
                 <h3 data-en="Hotels &amp; Airbnbs">Hoteles y Airbnbs</h3>
                 <p data-en="Sheets and towels for your rental.">Sábanas y toallas para tu alojamiento.</p>
-                <a class="service-link" href="https://wa.me/19396555329" data-wa="¡Hola! Me interesa el servicio de lavandería para mi hotel o Airbnb." data-wa-en="Hi! I'm interested in laundry service for my hotel or Airbnb." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg><span data-en="Get a quote">Cotizar</span></a>
+                <a class="service-link" href="https://wa.me/19396555329"
+                  data-wa="¡Hola! Me interesa el servicio de lavandería para mi hotel o Airbnb."
+                  data-wa-en="Hi! I'm interested in laundry service for my hotel or Airbnb." target="_blank"
+                  rel="noopener"><svg aria-hidden="true">
+                    <use href="#i-whatsapp" />
+                  </svg><span data-en="Get a quote">Cotizar</span></a>
               </div>
             </article>
           </li>
           <li class="reveal" style="--i:5">
             <article class="service-card">
               <div class="service-media">
-                <img src="assets/images/servicios/recogido-y-entrega.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Empleado entregando camisas limpias al cliente: recogido y entrega en Río Grande" data-en-alt="Staff member handing clean shirts to a customer: pickup and delivery in Río Grande">
+                <img src="assets/images/servicios/recogido-y-entrega.jpg" width="800" height="600" loading="lazy"
+                  decoding="async"
+                  alt="Empleado entregando camisas limpias al cliente: recogido y entrega en Río Grande"
+                  data-en-alt="Staff member handing clean shirts to a customer: pickup and delivery in Río Grande">
               </div>
               <div class="service-body">
                 <h3 data-en="Pickup &amp; delivery">Recogido y entrega</h3>
                 <p data-en="We pick up your laundry and bring it back.">Pasamos por tu ropa y te la llevamos.</p>
-                <a class="service-link" href="https://wa.me/19396555329" data-wa="¡Hola! Quiero coordinar un recogido a domicilio." data-wa-en="Hi! I'd like to schedule a home pickup." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg><span data-en="Schedule">Coordinar</span></a>
+                <a class="service-link" href="https://wa.me/19396555329"
+                  data-wa="¡Hola! Quiero coordinar un recogido a domicilio."
+                  data-wa-en="Hi! I'd like to schedule a home pickup." target="_blank" rel="noopener"><svg
+                    aria-hidden="true">
+                    <use href="#i-whatsapp" />
+                  </svg><span data-en="Schedule">Coordinar</span></a>
               </div>
             </article>
           </li>
         </ul>
 
         <p class="service-area reveal">
-          <span class="van" aria-hidden="true"><svg><use href="#i-truck"/></svg></span>
-          <span data-en="Pickup and delivery in Río Grande, Luquillo, Fajardo and eastern Puerto Rico.">Recogido y entrega en Río Grande, Luquillo, Fajardo y el área este.</span>
+          <span class="van" aria-hidden="true"><svg>
+              <use href="#i-truck" />
+            </svg></span>
+          <span data-en="Pickup and delivery in Río Grande, Luquillo, Fajardo and eastern Puerto Rico.">Recogido y
+            entrega en Río Grande, Luquillo, Fajardo y el área este.</span>
         </p>
       </div>
     </section>
@@ -413,19 +563,30 @@
       <div class="container">
         <div class="scene scene--head scene--room">
           <div class="scene-bg scene-bg--room" aria-hidden="true">
-            <video class="scene-video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback data-poster="assets/images/proceso/ropa-lavadora.webp">
+            <video class="scene-video" muted loop playsinline preload="none" disablepictureinpicture
+              disableremoteplayback data-poster="assets/images/proceso/ropa-lavadora.webp">
               <source src="assets/videos/proceso/ropa-lavadora.mp4" type="video/mp4">
             </video>
           </div>
           <div class="process-copy">
-          <h2 class="section-title process-title reveal" id="process-title" data-en-html='How we care for <span class="hl">your clothes</span>'>Así cuidamos <span class="hl">tu ropa</span></h2>
-          <p class="section-lead process-lead reveal" style="--i:1" data-en="We wash, dry and fold every piece with the care it deserves.">Lavamos, secamos y doblamos cada pieza con el cuidado que merece.</p>
-          <ol class="steps" role="list">
-            <li class="reveal" style="--i:2"><span class="step-num" aria-hidden="true">1</span><span data-en="We pick up your laundry">Recogemos tu ropa</span></li>
-            <li class="reveal" style="--i:3"><span class="step-num" aria-hidden="true">2</span><span data-en="We wash and fold it">La lavamos y doblamos</span></li>
-            <li class="reveal" style="--i:4"><span class="step-num" aria-hidden="true">3</span><span data-en="We deliver it ready">Te la entregamos lista</span></li>
-          </ol>
-          <a class="btn btn-brand btn-lg process-cta reveal" style="--i:5" href="https://wa.me/19396555329" data-wa="¡Hola First Stop! Quiero coordinar un recogido." data-wa-en="Hi First Stop! I'd like to schedule a pickup." target="_blank" rel="noopener" data-en="Request pickup">Solicitar recogido</a>
+            <h2 class="section-title process-title reveal" id="process-title"
+              data-en-html='How we care for <span class="hl">your clothes</span>'>Así cuidamos <span class="hl">tu
+                ropa</span></h2>
+            <p class="section-lead process-lead reveal" style="--i:1"
+              data-en="We wash, dry and fold every piece with the care it deserves.">Lavamos, secamos y doblamos cada
+              pieza con el cuidado que merece.</p>
+            <ol class="steps" role="list">
+              <li class="reveal" style="--i:2"><span class="step-num" aria-hidden="true">1</span><span
+                  data-en="We pick up your laundry">Recogemos tu ropa</span></li>
+              <li class="reveal" style="--i:3"><span class="step-num" aria-hidden="true">2</span><span
+                  data-en="We wash and fold it">La lavamos y doblamos</span></li>
+              <li class="reveal" style="--i:4"><span class="step-num" aria-hidden="true">3</span><span
+                  data-en="We deliver it ready">Te la entregamos lista</span></li>
+            </ol>
+            <a class="btn btn-brand btn-lg process-cta reveal" style="--i:5" href="https://wa.me/19396555329"
+              data-wa="¡Hola First Stop! Quiero coordinar un recogido."
+              data-wa-en="Hi First Stop! I'd like to schedule a pickup." target="_blank" rel="noopener"
+              data-en="Request pickup">Solicitar recogido</a>
           </div>
         </div>
       </div>
@@ -458,27 +619,40 @@
             <span class="cart-glow"></span>
             <span class="cart-shadow"></span>
             <div class="cart-3d">
-              <img class="cart-layer cart-back" src="assets/images/carro/carro-fondo.webp" width="640" height="748" alt="" loading="lazy" decoding="async">
-              <img class="cart-layer cart-heap" src="assets/images/carro/carro-ropa.webp" width="640" height="748" alt="" loading="lazy" decoding="async">
-              <img class="cart-drop cart-drop--red" src="assets/images/carro/prenda-roja.webp" width="154" height="158" alt="" loading="lazy" decoding="async">
-              <img class="cart-drop cart-drop--blue" src="assets/images/carro/prenda-azul.webp" width="141" height="178" alt="" loading="lazy" decoding="async">
-              <img class="cart-layer cart-front" src="assets/images/carro/carro-frente.webp" width="640" height="748" alt="" loading="lazy" decoding="async">
+              <img class="cart-layer cart-back" src="assets/images/carro/carro-fondo.webp" width="640" height="748"
+                alt="" loading="lazy" decoding="async">
+              <img class="cart-layer cart-heap" src="assets/images/carro/carro-ropa.webp" width="640" height="748"
+                alt="" loading="lazy" decoding="async">
+              <img class="cart-drop cart-drop--red" src="assets/images/carro/prenda-roja.webp" width="154" height="158"
+                alt="" loading="lazy" decoding="async">
+              <img class="cart-drop cart-drop--blue" src="assets/images/carro/prenda-azul.webp" width="141" height="178"
+                alt="" loading="lazy" decoding="async">
+              <img class="cart-layer cart-front" src="assets/images/carro/carro-frente.webp" width="640" height="748"
+                alt="" loading="lazy" decoding="async">
             </div>
           </div>
         </div>
         <div class="footer-info reveal">
-          <a class="footer-logo" href="#inicio" aria-label="1 Stop Laundry – Volver al inicio" data-en-aria-label="1 Stop Laundry – Back to top">
-            <svg class="logo" viewBox="0 0 1200 1200" aria-hidden="true" focusable="false"><use href="#logo"/></svg>
+          <a class="footer-logo" href="#inicio" aria-label="1 Stop Laundry – Volver al inicio"
+            data-en-aria-label="1 Stop Laundry – Back to top">
+            <svg class="logo" viewBox="0 0 1200 1200" aria-hidden="true" focusable="false">
+              <use href="#logo" />
+            </svg>
           </a>
           <address class="footer-address">
-            <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Laundry%20y%20Dry%20Cleaning%2C%20R%C3%ADo%20Grande&amp;destination_place_id=ChIJtUC9EbyfBIwR-CLt6le5Oa4" target="_blank" rel="noopener">
+            <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Laundry%20y%20Dry%20Cleaning%2C%20R%C3%ADo%20Grande&amp;destination_place_id=ChIJtUC9EbyfBIwR-CLt6le5Oa4"
+              target="_blank" rel="noopener">
               Carr. PR-3 km 26.5, Bo. Juan González<br>Río Grande, PR 00745
             </a>
           </address>
-          <a class="footer-phone" href="tel:+17878881666"><svg aria-hidden="true"><use href="#i-phone"/></svg><span data-en="Call">Llamar</span> 787-888-1666</a>
+          <a class="footer-phone" href="tel:+17878881666"><svg aria-hidden="true">
+              <use href="#i-phone" />
+            </svg><span data-en="Call">Llamar</span> 787-888-1666</a>
           <ul class="socials" role="list" aria-label="Canales oficiales" data-en-aria-label="Official channels">
             <li>
-              <a href="https://wa.me/19396555329" data-wa="¡Hola First Stop! Quiero información sobre sus servicios." data-wa-en="Hi First Stop! I'd like information about your services." target="_blank" rel="noopener" aria-label="WhatsApp">
+              <a href="https://wa.me/19396555329" data-wa="¡Hola First Stop! Quiero información sobre sus servicios."
+                data-wa-en="Hi First Stop! I'd like information about your services." target="_blank" rel="noopener"
+                aria-label="WhatsApp">
                 <img src="assets/icons/whatsapp-3d.webp" width="56" height="56" loading="lazy" alt="">
               </a>
             </li>
@@ -499,14 +673,18 @@
         </div>
 
         <div class="map-frame reveal" style="--i:1">
-          <iframe title="Mapa: Laundry y Dry Cleaning en Río Grande, Puerto Rico" data-en-title="Map: Laundry y Dry Cleaning in Río Grande, Puerto Rico" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1200!2d-65.8068146!3d18.3752249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c049fbc11bd40b5%3A0xae39b957eaed22f8!2sLaundry%20y%20Dry%20Cleaning!5e0!3m2!1ses!2spr!4v1760000000000!5m2!1ses!2spr"></iframe>
+          <iframe title="Mapa: Laundry y Dry Cleaning en Río Grande, Puerto Rico"
+            data-en-title="Map: Laundry y Dry Cleaning in Río Grande, Puerto Rico" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" allowfullscreen
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1200!2d-65.8068146!3d18.3752249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c049fbc11bd40b5%3A0xae39b957eaed22f8!2sLaundry%20y%20Dry%20Cleaning!5e0!3m2!1ses!2spr!4v1760000000000!5m2!1ses!2spr"></iframe>
         </div>
       </div>
 
       <!-- Horario: siempre al final -->
       <div class="footer-hours">
-        <svg class="hours-icon" aria-hidden="true"><use href="#i-clock"/></svg>
+        <svg class="hours-icon" aria-hidden="true">
+          <use href="#i-clock" />
+        </svg>
         <ul class="hours-list" role="list" aria-label="Horario" data-en-aria-label="Hours">
           <li data-days="1,2,3,4,5" data-en="Mon – Fri · 7:00 a.m. – 5:00 p.m.">Lun – Vie · 7:00 a.m. – 5:00 p.m.</li>
           <li data-days="6" data-en="Sat · 7:00 a.m. – 4:00 p.m.">Sáb · 7:00 a.m. – 4:00 p.m.</li>
@@ -523,14 +701,20 @@
 
   <!-- ============ BOTONES FLOTANTES: llamar y WhatsApp ============ -->
   <div class="float-actions">
-    <a class="call-float" href="tel:+17878881666" aria-label="Llamar al 787-888-1666" data-en-aria-label="Call 787-888-1666">
+    <a class="call-float" href="tel:+17878881666" aria-label="Llamar al 787-888-1666"
+      data-en-aria-label="Call 787-888-1666">
       <span class="call-float-label" aria-hidden="true">
         <small data-en="Call">Llamar</small>
         <strong>787-888-1666</strong>
       </span>
-      <span class="call-icon" aria-hidden="true"><svg><use href="#i-phone"/></svg></span>
+      <span class="call-icon" aria-hidden="true"><svg>
+          <use href="#i-phone" />
+        </svg></span>
     </a>
-    <a class="wa-float" href="https://wa.me/19396555329" data-wa="¡Hola First Stop! Quiero información sobre sus servicios." data-wa-en="Hi First Stop! I'd like information about your services." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" data-en-aria-label="Message us on WhatsApp">
+    <a class="wa-float" href="https://wa.me/19396555329"
+      data-wa="¡Hola First Stop! Quiero información sobre sus servicios."
+      data-wa-en="Hi First Stop! I'd like information about your services." target="_blank" rel="noopener"
+      aria-label="Escríbenos por WhatsApp" data-en-aria-label="Message us on WhatsApp">
       <span class="wa-ring" aria-hidden="true"></span>
       <span class="wa-ring wa-ring--2" aria-hidden="true"></span>
       <img src="assets/icons/whatsapp-3d.webp" width="68" height="68" alt="">
@@ -539,4 +723,5 @@
 
   <script src="assets/js/main.js" defer></script>
 </body>
+
 </html>
